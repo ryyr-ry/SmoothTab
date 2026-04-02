@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Paramètres de Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Ouvrir les nouveaux onglets au premier plan (désactivé les ouvre en arrière-plan)"
+   },
+   "optionOpenEnd": {
+      "message": "Placer les nouveaux onglets à la fin de la barre d'onglets (désactivé les ouvre à côté de l'onglet actuel)"
+   },
+   "blacklist": {
+      "message": "Domaines sur liste noire (un par ligne)"
+   },
+   "clickme": {
+      "message": "Cliquez ici pour tester"
+   },
+   "dblclick": {
+      "message": "Double-clic détecté"
+   },
+   "singleclick": {
+      "message": "Clic simple détecté"
+   },
+   "extensionDescription": {
+      "message": "Double-cliquez sur n'importe quel lien pour l'ouvrir dans un nouvel onglet."
+   },
+   "tap_delay_ms": {
+      "message": "Délai du double-clic (en millisecondes)"
+   },
+   "thankBody": {
+      "message": "Essayez de double-cliquer sur les liens de cette page pour voir comment cela fonctionne."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Sous licence MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Bienvenue sur Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Dépôt GitHub (Rapports de bugs & demandes)"
+   },
+   "linkToPrivacy": {
+      "message": "Politique de confidentialité"
+   },
+   "optionYouTubeFix": {
+      "message": "Activer le mode de compatibilité avancé pour YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Résout les problèmes de simple clic sur les aperçus vidéo. Cela active une logique complexe et spécifique au site. Laissez cette option désactivée, sauf si vous rencontrez des problèmes sur YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Activer le mode haute performance"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Maintient le processus d'arrière-plan de l'extension actif pour éliminer les délais des nouveaux onglets. Peut augmenter légèrement l'utilisation de la mémoire."
+   }
+}

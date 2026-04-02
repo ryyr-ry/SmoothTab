@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Ustawienia Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Otwieraj nowe karty na pierwszym planie (wyłączenie otwiera je w tle)"
+   },
+   "optionOpenEnd": {
+      "message": "Umieszczaj nowe karty na końcu paska kart (wyłączenie otwiera je obok bieżącej)"
+   },
+   "blacklist": {
+      "message": "Domeny na czarnej liście (jedna na wiersz)"
+   },
+   "clickme": {
+      "message": "Kliknij tutaj, aby przetestować"
+   },
+   "dblclick": {
+      "message": "Wykryto podwójne kliknięcie"
+   },
+   "singleclick": {
+      "message": "Wykryto pojedyncze kliknięcie"
+   },
+   "extensionDescription": {
+      "message": "Kliknij dwukrotnie dowolny link, aby otworzyć go w nowej karcie."
+   },
+   "tap_delay_ms": {
+      "message": "Opóźnienie podwójnego kliknięcia (w milisekundach)"
+   },
+   "thankBody": {
+      "message": "Spróbuj dwukrotnie kliknąć linki na tej stronie, aby zobaczyć, jak to działa."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Na licencji MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Witamy w Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Repozytorium GitHub (zgłoszenia błędów i prośby)"
+   },
+   "linkToPrivacy": {
+      "message": "Polityka prywatności"
+   },
+   "optionYouTubeFix": {
+      "message": "Włącz zaawansowany tryb zgodności dla YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Rozwiązuje problemy z pojedynczym kliknięciem na podglądach wideo. Włącza to złożoną logikę specyficzną dla witryny. Pozostaw wyłączone, chyba że występują problemy w YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Włącz tryb wysokiej wydajności"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Utrzymuje aktywność procesu w tle rozszerzenia, aby wyeliminować opóźnienia w otwieraniu nowych kart. Może nieznacznie zwiększyć zużycie pamięci."
+   }
+}

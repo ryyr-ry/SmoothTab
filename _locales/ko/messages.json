@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab 설정"
+   },
+   "optionOpenFront": {
+      "message": "새 탭을 포그라운드에서 열기 (비활성화 시 백그라운드에서 열림)"
+   },
+   "optionOpenEnd": {
+      "message": "새 탭을 탭 스트립의 끝에 배치 (비활성화 시 현재 탭 옆에 열림)"
+   },
+   "blacklist": {
+      "message": "블랙리스트 도메인 (한 줄에 하나씩)"
+   },
+   "clickme": {
+      "message": "테스트하려면 여기를 클릭하세요"
+   },
+   "dblclick": {
+      "message": "더블 클릭 감지됨"
+   },
+   "singleclick": {
+      "message": "싱글 클릭 감지됨"
+   },
+   "extensionDescription": {
+      "message": "링크를 더블 클릭하여 새 탭에서 여세요."
+   },
+   "tap_delay_ms": {
+      "message": "더블 클릭 지연 시간 (밀리초)"
+   },
+   "thankBody": {
+      "message": "이 페이지의 링크를 더블 클릭하여 어떻게 작동하는지 확인해 보세요."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry MPL 2.0 라이선스에 따라 사용 허가됨."
+   },
+   "thankHeader": {
+      "message": "Smooth Tab에 오신 것을 환영합니다"
+   },
+   "linkToGitHub": {
+      "message": "GitHub 리포지토리 (버그 신고 및 기능 요청)"
+   },
+   "linkToPrivacy": {
+      "message": "개인정보처리방침"
+   },
+   "optionYouTubeFix": {
+      "message": "YouTube 고급 호환성 모드 활성화"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "동영상 미리보기에서 싱글 클릭 문제를 해결합니다. 복잡하고 사이트별 로직을 활성화하므로 YouTube에서 문제가 발생하지 않는 한 비활성화 상태로 두세요."
+   },
+   "optionHighPerformanceMode": {
+      "message": "고성능 모드 활성화"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "확장 프로그램의 백그라운드 프로세스를 활성 상태로 유지하여 새 탭의 지연을 제거합니다. 메모리 사용량이 약간 증가할 수 있습니다."
+   }
+}

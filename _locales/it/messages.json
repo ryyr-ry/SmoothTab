@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Impostazioni di Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Apri nuove schede in primo piano (disabilitato le apre in background)"
+   },
+   "optionOpenEnd": {
+      "message": "Posiziona nuove schede alla fine della barra delle schede (disabilitato le apre accanto a quella corrente)"
+   },
+   "blacklist": {
+      "message": "Domini in lista nera (uno per riga)"
+   },
+   "clickme": {
+      "message": "Clicca qui per testare"
+   },
+   "dblclick": {
+      "message": "Doppio clic rilevato"
+   },
+   "singleclick": {
+      "message": "Clic singolo rilevato"
+   },
+   "extensionDescription": {
+      "message": "Fai doppio clic su qualsiasi link per aprirlo in una nuova scheda."
+   },
+   "tap_delay_ms": {
+      "message": "Ritardo doppio clic (in millisecondi)"
+   },
+   "thankBody": {
+      "message": "Prova a fare doppio clic sui link in questa pagina per vedere come funziona."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Concesso in licenza con MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Benvenuto in Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Repository GitHub (Segnalazioni di bug e richieste)"
+   },
+   "linkToPrivacy": {
+      "message": "Informativa sulla privacy"
+   },
+   "optionYouTubeFix": {
+      "message": "Abilita la modalità di compatibilità avanzata per YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Risolve i problemi con il clic singolo sulle anteprime dei video. Abilita una logica complessa e specifica per il sito. Mantienila disattivata a meno che non si verifichino problemi su YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Abilita la modalità ad alte prestazioni"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Mantiene attivo il processo in background dell'estensione per eliminare i ritardi delle nuove schede. Potrebbe aumentare leggermente l'utilizzo della memoria."
+   }
+}

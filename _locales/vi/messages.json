@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Cài đặt Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Mở tab mới ở nền trước (tắt sẽ mở ở nền sau)"
+   },
+   "optionOpenEnd": {
+      "message": "Đặt tab mới ở cuối dải tab (tắt sẽ mở bên cạnh tab hiện tại)"
+   },
+   "blacklist": {
+      "message": "Tên miền trong danh sách đen (mỗi dòng một tên)"
+   },
+   "clickme": {
+      "message": "Nhấp vào đây để kiểm tra"
+   },
+   "dblclick": {
+      "message": "Đã phát hiện nhấp đúp"
+   },
+   "singleclick": {
+      "message": "Đã phát hiện nhấp một lần"
+   },
+   "extensionDescription": {
+      "message": "Nhấp đúp vào bất kỳ liên kết nào để mở trong một tab mới."
+   },
+   "tap_delay_ms": {
+      "message": "Độ trễ nhấp đúp (tính bằng mili giây)"
+   },
+   "thankBody": {
+      "message": "Hãy thử nhấp đúp vào các liên kết trên trang này để xem nó hoạt động như thế nào."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Được cấp phép theo MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Chào mừng bạn đến với Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Kho lưu trữ GitHub (Báo cáo lỗi & Yêu cầu)"
+   },
+   "linkToPrivacy": {
+      "message": "Chính sách bảo mật"
+   },
+   "optionYouTubeFix": {
+      "message": "Bật chế độ tương thích nâng cao cho YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Giải quyết các sự cố khi nhấp một lần trên bản xem trước video. Chế độ này bật logic phức tạp, dành riêng cho trang web. Hãy tắt chế độ này trừ khi bạn gặp sự cố trên YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Bật Chế độ Hiệu suất cao"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Giữ cho tiến trình nền của tiện ích hoạt động để loại bỏ độ trễ của tab mới. Có thể làm tăng nhẹ việc sử dụng bộ nhớ."
+   }
+}

@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Pengaturan Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Buka tab baru di latar depan (menonaktifkan akan membukanya di latar belakang)"
+   },
+   "optionOpenEnd": {
+      "message": "Tempatkan tab baru di akhir strip tab (menonaktifkan akan membukanya di sebelah tab saat ini)"
+   },
+   "blacklist": {
+      "message": "Domain yang Diblokir (satu per baris)"
+   },
+   "clickme": {
+      "message": "Klik di sini untuk menguji"
+   },
+   "dblclick": {
+      "message": "Klik ganda terdeteksi"
+   },
+   "singleclick": {
+      "message": "Klik tunggal terdeteksi"
+   },
+   "extensionDescription": {
+      "message": "Klik ganda tautan apa pun untuk membukanya di tab baru."
+   },
+   "tap_delay_ms": {
+      "message": "Penundaan klik ganda (dalam milidetik)"
+   },
+   "thankBody": {
+      "message": "Coba klik ganda tautan di halaman ini untuk melihat cara kerjanya."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Berlisensi di bawah MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Selamat datang di Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Repositori GitHub (Laporan Bug & Permintaan)"
+   },
+   "linkToPrivacy": {
+      "message": "Kebijakan Privasi"
+   },
+   "optionYouTubeFix": {
+      "message": "Aktifkan mode kompatibilitas lanjutan untuk YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Mengatasi masalah sekali klik pada pratinjau video. Ini mengaktifkan logika kompleks yang spesifik untuk situs. Biarkan nonaktif kecuali Anda mengalami masalah di YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Aktifkan Mode Performa Tinggi"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Menjaga proses latar belakang ekstensi tetap aktif untuk menghilangkan penundaan tab baru. Mungkin sedikit meningkatkan penggunaan memori."
+   }
+}

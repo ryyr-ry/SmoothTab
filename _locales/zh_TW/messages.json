@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab 設定"
+   },
+   "optionOpenFront": {
+      "message": "在前台開啟新分頁（停用則在背景開啟）"
+   },
+   "optionOpenEnd": {
+      "message": "將新分頁置於分頁列末尾（停用則在目前分頁旁開啟）"
+   },
+   "blacklist": {
+      "message": "網域黑名單（每行一個）"
+   },
+   "clickme": {
+      "message": "點擊此處測試"
+   },
+   "dblclick": {
+      "message": "偵測到雙擊"
+   },
+   "singleclick": {
+      "message": "偵測到單擊"
+   },
+   "extensionDescription": {
+      "message": "雙擊任意連結即可在新分頁中開啟。"
+   },
+   "tap_delay_ms": {
+      "message": "雙擊延遲（毫秒）"
+   },
+   "thankBody": {
+      "message": "嘗試雙擊此頁面上的連結，看看它是如何運作的。"
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry 根據 MPL 2.0 授權條款授權。"
+   },
+   "thankHeader": {
+      "message": "歡迎使用 Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "GitHub 存放庫（提交錯誤和建議）"
+   },
+   "linkToPrivacy": {
+      "message": "隱私權政策"
+   },
+   "optionYouTubeFix": {
+      "message": "為 YouTube 啟用進階相容模式"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "解決影片預覽中的單擊問題。此功能會啟用複雜的、針對特定網站的邏輯。除非您在 YouTube 上遇到問題，否則請保持關閉狀態。"
+   },
+   "optionHighPerformanceMode": {
+      "message": "啟用高效能模式"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "保持擴充功能的背景處理程序處於活動狀態以消除新分頁的延遲。可能會稍微增加記憶體使用量。"
+   }
+}

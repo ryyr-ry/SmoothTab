@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab Instellingen"
+   },
+   "optionOpenFront": {
+      "message": "Nieuwe tabbladen op de voorgrond openen (uitgeschakeld opent ze op de achtergrond)"
+   },
+   "optionOpenEnd": {
+      "message": "Nieuwe tabbladen aan het einde van de tabbladstrip plaatsen (uitgeschakeld opent ze naast het huidige tabblad)"
+   },
+   "blacklist": {
+      "message": "Geblokkeerde domeinen (één per regel)"
+   },
+   "clickme": {
+      "message": "Klik hier om te testen"
+   },
+   "dblclick": {
+      "message": "Dubbelklik gedetecteerd"
+   },
+   "singleclick": {
+      "message": "Enkele klik gedetecteerd"
+   },
+   "extensionDescription": {
+      "message": "Dubbelklik op een link om deze in een nieuw tabblad te openen."
+   },
+   "tap_delay_ms": {
+      "message": "Dubbelklikvertraging (in milliseconden)"
+   },
+   "thankBody": {
+      "message": "Probeer te dubbelklikken op de links op deze pagina om te zien hoe het werkt."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Gelicentieerd onder de MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Welkom bij Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "GitHub-repository (bugrapporten en verzoeken)"
+   },
+   "linkToPrivacy": {
+      "message": "Privacybeleid"
+   },
+   "optionYouTubeFix": {
+      "message": "Geavanceerde compatibiliteitsmodus voor YouTube inschakelen"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Lost problemen met enkele klikken op videovoorbeelden op. Dit schakelt complexe, site-specifieke logica in. Laat dit uitgeschakeld, tenzij u problemen ondervindt op YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Modus voor hoge prestaties inschakelen"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Houdt het achtergrondproces van de extensie actief om vertragingen bij nieuwe tabbladen te elimineren. Kan het geheugengebruik enigszins verhogen."
+   }
+}

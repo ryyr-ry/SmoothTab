@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab 設定"
+   },
+   "optionOpenFront": {
+      "message": "新しいタブをフォアグラウンドで表示（オフにするとバックグラウンドで開く）"
+   },
+   "optionOpenEnd": {
+      "message": "タブの最後に新しいタブを配置する（オフにすると隣で開く）"
+   },
+   "blacklist": {
+      "message": "ブラックリストドメイン (1行に1つずつ)"
+   },
+   "clickme": {
+      "message": "ここをクリックしてテスト"
+   },
+   "dblclick": {
+      "message": "ダブルクリック検出"
+   },
+   "singleclick": {
+      "message": "シングルクリック検出"
+   },
+   "extensionDescription": {
+      "message": "リンクをダブルクリックして新しいタブで開きます。"
+   },
+   "tap_delay_ms": {
+      "message": "ダブルクリックの遅延 (ミリ秒)"
+   },
+   "thankBody": {
+      "message": "このページ上のリンクをダブルクリックして、動作をお試しください。"
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Licensed under the MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Smooth Tabへようこそ"
+   },
+   "linkToGitHub": {
+      "message": "GitHubリポジトリ (バグ報告・要望)"
+   },
+   "linkToPrivacy": {
+      "message": "プライバシーポリシー"
+   },
+   "optionYouTubeFix": {
+      "message": "YouTube向けの高度な互換モードを有効にする"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "動画プレビューでのシングルクリックの問題を解決します。複雑なサイト固有のロジックを有効にするため、YouTubeにて問題が発生しない限りはオフにしてください。"
+   },
+   "optionHighPerformanceMode": {
+      "message": "ハイパフォーマンスモードを有効にする"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "拡張機能のバックグラウンドプロセスを有効にし続け、遅延を削減します。メモリ使用量がわずかに増加することがあります。"
+   }
+}

@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Configurações do Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Abrir novas abas em primeiro plano (desativar abre em segundo plano)"
+   },
+   "optionOpenEnd": {
+      "message": "Colocar novas abas no final da faixa de abas (desativar abre ao lado da atual)"
+   },
+   "blacklist": {
+      "message": "Domínios na lista de bloqueio (um por linha)"
+   },
+   "clickme": {
+      "message": "Clique aqui para testar"
+   },
+   "dblclick": {
+      "message": "Clique duplo detectado"
+   },
+   "singleclick": {
+      "message": "Clique único detectado"
+   },
+   "extensionDescription": {
+      "message": "Clique duas vezes em qualquer link para abri-lo em uma nova aba."
+   },
+   "tap_delay_ms": {
+      "message": "Atraso do clique duplo (em milissegundos)"
+   },
+   "thankBody": {
+      "message": "Tente clicar duas vezes nos links desta página para ver como funciona."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Licenciado sob a MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Bem-vindo ao Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Repositório do GitHub (Relatórios de bugs e solicitações)"
+   },
+   "linkToPrivacy": {
+      "message": "Política de Privacidade"
+   },
+   "optionYouTubeFix": {
+      "message": "Ativar modo de compatibilidade avançado para o YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Soluciona problemas de clique único em pré-visualizações de vídeo. Isso ativa uma lógica complexa e específica do site. Mantenha desativado, a menos que você tenha problemas no YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Ativar Modo de Alto Desempenho"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Mantém o processo de fundo da extensão ativo para eliminar atrasos em novas abas. Pode aumentar ligeiramente o uso de memória."
+   }
+}

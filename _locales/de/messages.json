@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab Einstellungen"
+   },
+   "optionOpenFront": {
+      "message": "Neue Tabs im Vordergrund öffnen (deaktiviert öffnet sie im Hintergrund)"
+   },
+   "optionOpenEnd": {
+      "message": "Neue Tabs am Ende der Tableiste platzieren (deaktiviert öffnet sie neben dem aktuellen Tab)"
+   },
+   "blacklist": {
+      "message": "Gesperrte Domains (eine pro Zeile)"
+   },
+   "clickme": {
+      "message": "Zum Testen hier klicken"
+   },
+   "dblclick": {
+      "message": "Doppelklick erkannt"
+   },
+   "singleclick": {
+      "message": "Einfacher Klick erkannt"
+   },
+   "extensionDescription": {
+      "message": "Doppelklicken Sie auf einen beliebigen Link, um ihn in einem neuen Tab zu öffnen."
+   },
+   "tap_delay_ms": {
+      "message": "Doppelklick-Verzögerung (in Millisekunden)"
+   },
+   "thankBody": {
+      "message": "Versuchen Sie, auf die Links auf dieser Seite zu doppelklicken, um zu sehen, wie es funktioniert."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Lizenziert unter der MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Willkommen bei Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "GitHub-Repository (Fehlerberichte & Anfragen)"
+   },
+   "linkToPrivacy": {
+      "message": "Datenschutzrichtlinie"
+   },
+   "optionYouTubeFix": {
+      "message": "Erweiterten Kompatibilitätsmodus für YouTube aktivieren"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Behebt Probleme mit Einzelklicks bei Videovorschauen. Dies aktiviert eine komplexe, seitenspezifische Logik. Nur aktivieren, wenn Probleme auf YouTube auftreten."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Hochleistungsmodus aktivieren"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Hält den Hintergrundprozess der Erweiterung aktiv, um Verzögerungen bei neuen Tabs zu eliminieren. Kann den Speicherverbrauch leicht erhöhen."
+   }
+}

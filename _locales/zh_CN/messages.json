@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab 设置"
+   },
+   "optionOpenFront": {
+      "message": "在前台打开新标签页（禁用则在后台打开）"
+   },
+   "optionOpenEnd": {
+      "message": "将新标签页置于标签栏末尾（禁用则在当前标签页旁打开）"
+   },
+   "blacklist": {
+      "message": "域名黑名单（每行一个）"
+   },
+   "clickme": {
+      "message": "点击此处测试"
+   },
+   "dblclick": {
+      "message": "检测到双击"
+   },
+   "singleclick": {
+      "message": "检测到单击"
+   },
+   "extensionDescription": {
+      "message": "双击任意链接即可在新标签页中打开。"
+   },
+   "tap_delay_ms": {
+      "message": "双击延迟（毫秒）"
+   },
+   "thankBody": {
+      "message": "尝试双击此页面上的链接，看看它是如何工作的。"
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry 根据 MPL 2.0 许可证授权。"
+   },
+   "thankHeader": {
+      "message": "欢迎使用 Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "GitHub 仓库（提交 Bug 和建议）"
+   },
+   "linkToPrivacy": {
+      "message": "隐私政策"
+   },
+   "optionYouTubeFix": {
+      "message": "为 YouTube 启用高级兼容模式"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "解决视频预览中的单击问题。此功能会启用复杂的、针对特定网站的逻辑。除非您在 YouTube 上遇到问题，否则请保持关闭状态。"
+   },
+   "optionHighPerformanceMode": {
+      "message": "启用高性能模式"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "保持扩展的后台进程活动以消除新标签页延迟。可能会略微增加内存使用量。"
+   }
+}

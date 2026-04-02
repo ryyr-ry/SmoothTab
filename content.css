@@ -1,0 +1,28 @@
+/**
+ * @file content.css
+ * @description Injected into all web pages to provide visual feedback for a successful double-click.
+ */
+
+/*
+ * Two identical keyframes are defined. By toggling between these two animation names
+ * in JavaScript (via inline styles), we can reliably re-trigger the animation on the
+ * same element. This robust technique is inherited from the original Tap to Tab and is
+ * more resilient to re-renders by modern frameworks (like React) than using CSS classes.
+ */
+@keyframes qt-animation-a {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes qt-animation-b {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}

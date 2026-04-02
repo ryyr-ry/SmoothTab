@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Smooth Tab Settings"
+   },
+   "optionOpenFront": {
+      "message": "Open new tabs in the foreground (disabling opens them in the background)"
+   },
+   "optionOpenEnd": {
+      "message": "Place new tabs at the end of the tab strip (disabling opens them next to the current tab)"
+   },
+   "blacklist": {
+      "message": "Blacklisted Domains (one per line)"
+   },
+   "clickme": {
+      "message": "Click here to test"
+   },
+   "dblclick": {
+      "message": "Double-click detected"
+   },
+   "singleclick": {
+      "message": "Single-click detected"
+   },
+   "extensionDescription": {
+      "message": "Double-click any link to open it in a new tab."
+   },
+   "tap_delay_ms": {
+      "message": "Double-click delay (in milliseconds)"
+   },
+   "thankBody": {
+      "message": "Try double-clicking the links on this page to see how it works."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Licensed under the MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Welcome to Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "GitHub Repository (Bug Reports & Requests)"
+   },
+   "linkToPrivacy": {
+      "message": "Privacy Policy"
+   },
+   "optionYouTubeFix": {
+      "message": "Enable advanced compatibility mode for YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Solves single-click issues on video previews. This enables complex, site-specific logic. Keep it off unless you experience problems on YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Enable High Performance Mode"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Keeps the extension's background process active to eliminate new tab delays. May slightly increase memory usage."
+   }
+}

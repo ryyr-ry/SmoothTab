@@ -1,0 +1,59 @@
+{
+   "extensionName": {
+      "message": "Smooth Tab"
+   },
+   "optionsTitle": {
+      "message": "Configuración de Smooth Tab"
+   },
+   "optionOpenFront": {
+      "message": "Abrir nuevas pestañas en primer plano (desactivado las abre en segundo plano)"
+   },
+   "optionOpenEnd": {
+      "message": "Colocar nuevas pestañas al final de la tira de pestañas (desactivado las abre junto a la actual)"
+   },
+   "blacklist": {
+      "message": "Dominios en lista negra (uno por línea)"
+   },
+   "clickme": {
+      "message": "Haz clic aquí para probar"
+   },
+   "dblclick": {
+      "message": "Doble clic detectado"
+   },
+   "singleclick": {
+      "message": "Un solo clic detectado"
+   },
+   "extensionDescription": {
+      "message": "Haz doble clic en cualquier enlace para abrirlo en una nueva pestaña."
+   },
+   "tap_delay_ms": {
+      "message": "Retraso de doble clic (en milisegundos)"
+   },
+   "thankBody": {
+      "message": "Intenta hacer doble clic en los enlaces de esta página para ver cómo funciona."
+   },
+   "thankFooter": {
+      "message": "© 2025 ryyr_ry Licenciado bajo la MPL 2.0."
+   },
+   "thankHeader": {
+      "message": "Bienvenido a Smooth Tab"
+   },
+   "linkToGitHub": {
+      "message": "Repositorio de GitHub (Reportes de errores y solicitudes)"
+   },
+   "linkToPrivacy": {
+      "message": "Política de privacidad"
+   },
+   "optionYouTubeFix": {
+      "message": "Activar modo de compatibilidad avanzado para YouTube"
+   },
+   "optionYouTubeFixHelper": {
+      "message": "Soluciona problemas con un solo clic en las vistas previas de video. Esto activa una lógica compleja y específica del sitio. Manténgalo desactivado a menos que experimente problemas en YouTube."
+   },
+   "optionHighPerformanceMode": {
+      "message": "Activar modo de alto rendimiento"
+   },
+   "optionHighPerformanceModeHelper": {
+      "message": "Mantiene activo el proceso en segundo plano de la extensión para eliminar retrasos en las nuevas pestañas. Puede aumentar ligeramente el uso de memoria."
+   }
+}
