@@ -53,3 +53,6 @@ Desktop.ini
 # Testing / Coverage
 coverage/
 .nyc_output/
+
+# GitHub Copilot instructions (private)
+.github/copilot-instructions.md
