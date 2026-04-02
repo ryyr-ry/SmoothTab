@@ -11,7 +11,7 @@ import { DoubleClickDetector } from './double-click-detector';
 import { triggerDoubleClickAnimation } from './animation';
 import { EventShield } from './event-shield';
 import type { AdapterRegistry } from '@/modules/site-adapters/adapter-registry';
-import { sendMessageToBackground } from '@/modules/messaging/sender';
+import { sendMessageToBackground, isContextValid } from '@/modules/messaging/sender';
 
 function stopEvent(e: MouseEvent): void {
   e.preventDefault();
@@ -57,6 +57,12 @@ export class ClickHandler {
   }
 
   private onClick(e: MouseEvent): void {
+    // 拡張コンテキスト無効化時は自動デタッチ
+    if (!isContextValid()) {
+      this.detach();
+      return;
+    }
+
     const anchor = resolveAnchor(e);
 
     if (!anchor || shouldIgnoreAnchor(anchor) || shouldIgnoreClick(e, this.guardState)) {

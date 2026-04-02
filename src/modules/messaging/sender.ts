@@ -4,13 +4,29 @@
 
 import type { ExtensionMessage } from './types';
 
+/**
+ * 拡張コンテキストが有効かどうかを確認する。
+ * 拡張リロード・更新後に旧コンテンツスクリプトが残っている場合 false を返す。
+ */
+export function isContextValid(): boolean {
+  try {
+    return browser.runtime?.id != null;
+  } catch {
+    return false;
+  }
+}
+
 export async function sendMessageToBackground(
   message: ExtensionMessage,
 ): Promise<boolean> {
+  if (!isContextValid()) return false;
   try {
     await browser.runtime.sendMessage(message);
     return true;
   } catch (error) {
+    if (String(error).includes('Extension context invalidated')) {
+      return false;
+    }
     console.error('Smooth Tab [sendMessageToBackground] 送信失敗:', error);
     return false;
   }
