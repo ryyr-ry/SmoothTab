@@ -1,0 +1,44 @@
+/**
+ * 共有 CSS カスタムプロパティ。
+ * オプションページとウェルカムページの両方で使用。
+ * ライト/ダークモード対応。
+ */
+
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg-color: #ffffff;
+    --text-color: #1c1e21;
+    --text-secondary-color: #606770;
+    --border-color: #dddfe2;
+    --accent-color: #1877f2;
+    --accent-color-light: #e7f3ff;
+    --switch-bg-color: #ccd0d5;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #18191a;
+        --card-bg-color: #242526;
+        --text-color: #e4e6eb;
+        --text-secondary-color: #b0b3b8;
+        --border-color: #3e4042;
+        --accent-color: #2d88ff;
+        --accent-color-light: #3a3b3c;
+        --switch-bg-color: #4b4d4f;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}

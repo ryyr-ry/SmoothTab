@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Smooth Tab Settings</title>
-    <link rel="stylesheet" href="options.css">
 </head>
 <body>
-
 <div class="container">
     <header>
         <h1 i18n="optionsTitle"></h1>
     </header>
 
-    <!-- The form is wrapped to prevent default submission behavior. -->
     <form onsubmit="return false;">
-        
-        <!-- Card 1: Core Behavior & Performance Settings -->
         <div class="card">
             <div class="form-group">
                 <label for="openTabFront" i18n="optionOpenFront"></label>
@@ -53,7 +48,6 @@
             </div>
         </div>
 
-        <!-- Card 2: Timing and Click Test -->
         <div class="card">
             <div class="form-group">
                 <label for="delay" i18n="tap_delay_ms"></label>
@@ -66,14 +60,12 @@
             </div>
         </div>
 
-        <!-- Card 3: Domain Blacklist -->
         <div class="card">
             <label for="blacklist" class="blacklist-label" i18n="blacklist"></label>
             <textarea id="blacklist" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="example.com&#10;mail.example.com"></textarea>
         </div>
     </form>
 </div>
-
-<script src="options.js"></script>
+<script type="module" src="./main.ts"></script>
 </body>
 </html>

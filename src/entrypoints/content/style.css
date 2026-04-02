@@ -1,0 +1,24 @@
+/**
+ * コンテンツスクリプト用 CSS。
+ * ダブルクリック時のフェードアニメーションキーフレーム。
+ * 2つの同一キーフレームを定義し、JavaScript 側で交互に切り替えることで
+ * 同じ要素で確実にアニメーションを再トリガーできる。
+ */
+
+@keyframes qt-animation-a {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes qt-animation-b {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
