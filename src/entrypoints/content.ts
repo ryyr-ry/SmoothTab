@@ -8,13 +8,14 @@ import { ClickHandler } from '@/modules/content/click-handler';
 import { AdapterRegistry } from '@/modules/site-adapters/adapter-registry';
 import { isBlacklisted as checkBlacklisted, type BlacklistMap } from '@/modules/blacklist/matcher';
 import { sendMessageToBackground } from '@/modules/messaging/sender';
-import {
-  safeDocumentDispatchEvent,
-  safeDocumentAddEventListener,
-  safeDocumentRemoveEventListener,
-  SafeCustomEvent,
-} from '@/utils/safe-natives';
 import type { ExtensionMessage } from '@/modules/messaging/types';
+
+const INSTANCE_KEY = '__smoothTabDestroy__' as const;
+const RETRY_DELAY_MS = 1000;
+
+type GlobalWithDestroy = typeof globalThis & {
+  [INSTANCE_KEY]?: () => void;
+};
 
 export default defineContentScript({
   matches: ['http://*/*', 'https://*/*'],
@@ -22,14 +23,14 @@ export default defineContentScript({
   allFrames: true,
 
   main() {
-    const TEARDOWN_EVENT = `smooth-tab-teardown-${browser.runtime.id}`;
-
-    // 旧インスタンスを破棄する
-    safeDocumentDispatchEvent(new SafeCustomEvent(TEARDOWN_EVENT));
+    // 旧インスタンスを破棄する（isolated world 内で安全に管理）
+    const global = globalThis as GlobalWithDestroy;
+    global[INSTANCE_KEY]?.();
 
     const hostname = window.location.hostname;
     const adapterRegistry = new AdapterRegistry(hostname);
-    const guardState = { blacklisted: false };
+    // フェイルクローズ: INIT 受信前はブラックリスト扱い
+    const guardState = { blacklisted: true };
     const clickHandler = new ClickHandler(adapterRegistry, guardState, 300);
 
     clickHandler.attach();
@@ -68,18 +69,25 @@ export default defineContentScript({
 
     // --- ティアダウン ---
     function destroy(): void {
-      safeDocumentRemoveEventListener(TEARDOWN_EVENT, destroy);
       clickHandler.detach();
       browser.runtime.onMessage.removeListener(handleMessage);
+      delete global[INSTANCE_KEY];
     }
 
-    safeDocumentAddEventListener(TEARDOWN_EVENT, destroy);
+    global[INSTANCE_KEY] = destroy;
 
     window.addEventListener('beforeunload', () => {
       clickHandler.detach();
     });
 
-    // --- 初期化完了を通知 ---
-    sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
+    // --- 初期化完了を通知（リトライ付き）---
+    void (async () => {
+      const ok = await sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
+      if (!ok) {
+        setTimeout(async () => {
+          await sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
+        }, RETRY_DELAY_MS);
+      }
+    })();
   },
 });

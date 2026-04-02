@@ -5,13 +5,13 @@
  */
 
 const ALARM_NAME = 'smooth-tab-keep-alive';
-const PERIOD_SECONDS = 29;
+const PERIOD_MINUTES = 0.5;
 
 export async function startKeepAlive(): Promise<void> {
   await browser.alarms.clear(ALARM_NAME);
-  browser.alarms.create(ALARM_NAME, {
-    delayInMinutes: PERIOD_SECONDS / 60,
-    periodInMinutes: PERIOD_SECONDS / 60,
+  await browser.alarms.create(ALARM_NAME, {
+    delayInMinutes: PERIOD_MINUTES,
+    periodInMinutes: PERIOD_MINUTES,
   });
 }
 

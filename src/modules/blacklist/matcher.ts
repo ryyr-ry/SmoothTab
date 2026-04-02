@@ -20,16 +20,10 @@ export function parseBlacklist(raw: string): BlacklistMap {
 }
 
 export function isBlacklisted(hostname: string, blacklist: BlacklistMap): boolean {
-  if (blacklist[hostname]) return true;
-
-  const lastDotIndex = hostname.lastIndexOf('.');
-  if (lastDotIndex <= 0) return false;
-
-  const secondLastDotIndex = hostname.lastIndexOf('.', lastDotIndex - 1);
-  if (secondLastDotIndex >= 0) {
-    const rootDomain = hostname.slice(secondLastDotIndex + 1);
-    if (blacklist[rootDomain]) return true;
+  const parts = hostname.split('.');
+  for (let i = 0; i < parts.length - 1; i++) {
+    const candidate = parts.slice(i).join('.');
+    if (blacklist[candidate]) return true;
   }
-
   return false;
 }

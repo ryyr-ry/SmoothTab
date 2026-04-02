@@ -4,19 +4,31 @@
 
 import type { ExtensionMessage } from './types';
 
-export function sendMessageToBackground(message: ExtensionMessage): void {
+export async function sendMessageToBackground(
+  message: ExtensionMessage,
+): Promise<boolean> {
   try {
-    browser.runtime.sendMessage(message);
+    await browser.runtime.sendMessage(message);
+    return true;
   } catch (error) {
     console.error('Smooth Tab [sendMessageToBackground] 送信失敗:', error);
+    return false;
   }
 }
 
-export async function sendMessageToTab(tabId: number, message: ExtensionMessage): Promise<void> {
+export async function sendMessageToTab(
+  tabId: number,
+  message: ExtensionMessage,
+  frameId?: number,
+): Promise<void> {
   try {
-    await browser.tabs.sendMessage(tabId, message);
+    await browser.tabs.sendMessage(
+      tabId,
+      message,
+      frameId != null ? { frameId } : undefined,
+    );
   } catch {
-    // タブが閉じられた等の正常なケースで発生するため、警告のみ
+    // タブが閉じられた等の正常なケースで発生する
   }
 }
 

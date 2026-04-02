@@ -90,14 +90,18 @@ export default defineBackground(() => {
     const blacklisted = isBlacklisted(hostname, blacklistMap);
 
     if (sender.tab?.id != null) {
-      await sendMessageToTab(sender.tab.id, {
-        type: 'INIT',
-        payload: {
-          blacklisted,
-          delay: options.delay,
-          enableYouTubeFix: options.enableYouTubeFix,
+      await sendMessageToTab(
+        sender.tab.id,
+        {
+          type: 'INIT',
+          payload: {
+            blacklisted,
+            delay: options.delay,
+            enableYouTubeFix: options.enableYouTubeFix,
+          },
         },
-      });
+        sender.frameId,
+      );
     }
   }
 
@@ -143,10 +147,13 @@ export default defineBackground(() => {
     }
   });
 
-  // --- ツールバーアイコンクリック ---
-  browser.action.onClicked.addListener(() => {
-    browser.runtime.openOptionsPage();
-  });
+  // --- ツールバーアイコンクリック（MV2: browserAction / MV3: action）---
+  const actionApi = browser.action ?? (browser as any).browserAction;
+  if (actionApi?.onClicked) {
+    actionApi.onClicked.addListener(() => {
+      browser.runtime.openOptionsPage();
+    });
+  }
 
   // --- Keep-Alive アラームリスナー ---
   browser.alarms.onAlarm.addListener((alarm) => {
