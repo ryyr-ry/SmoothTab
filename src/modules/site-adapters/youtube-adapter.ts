@@ -4,7 +4,7 @@
  * マウスイベントシールドの必要性判定を担当。
  */
 
-import { SafeMouseEvent, safeDocumentDispatchEvent } from '@/utils/safe-natives';
+import { SafeMouseEvent, safeEventTargetDispatchEvent } from '@/utils/safe-natives';
 import type { SiteAdapter } from './types';
 
 const YOUTUBE_ANIMATION_SELECTORS = [
@@ -33,7 +33,7 @@ export class YouTubeAdapter implements SiteAdapter {
       clientX: originalEvent.clientX,
       clientY: originalEvent.clientY,
     });
-    safeDocumentDispatchEvent.call(target, syntheticClick);
+    safeEventTargetDispatchEvent.call(target, syntheticClick);
   }
 
   resolveAnimationTarget(event: MouseEvent, anchor: HTMLAnchorElement): HTMLElement {

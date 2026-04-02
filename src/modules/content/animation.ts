@@ -3,7 +3,7 @@
  * ダブルクリック成功時の視覚的フィードバックを提供する。
  */
 
-import { safeAddEventListener, safeSetTimeout } from '@/utils/safe-natives';
+import { safeEventTargetAddEventListener, safeSetTimeout } from '@/utils/safe-natives';
 
 const ANIMATION_DURATION_MS = 1300;
 const FAILSAFE_CLEANUP_MS = 1500;
@@ -23,6 +23,6 @@ export function triggerDoubleClickAnimation(target: HTMLElement): void {
     }
   };
 
-  safeAddEventListener.call(target, 'animationend', cleanup, { once: true });
+  safeEventTargetAddEventListener.call(target, 'animationend', cleanup, { once: true });
   safeSetTimeout(cleanup, FAILSAFE_CLEANUP_MS);
 }

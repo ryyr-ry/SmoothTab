@@ -16,7 +16,7 @@ export class AdapterRegistry {
   private readonly isYouTube: boolean;
 
   constructor(hostname: string) {
-    this.isYouTube = hostname.endsWith('.youtube.com');
+    this.isYouTube = hostname === 'youtube.com' || hostname.endsWith('.youtube.com');
   }
 
   setYouTubeFixEnabled(enabled: boolean): void {
