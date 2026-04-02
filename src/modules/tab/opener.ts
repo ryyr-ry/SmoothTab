@@ -15,7 +15,7 @@ export async function openNewTab(
   context: TabCreationContext,
   options: Pick<ExtensionOptions, 'openTabFront' | 'openTabEnd'>,
 ): Promise<void> {
-  const createProperties: browser.Tabs.CreateCreatePropertiesType = {
+  const createProperties: Browser.tabs.CreateProperties = {
     url: context.url,
     active: options.openTabFront,
   };

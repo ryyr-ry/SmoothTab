@@ -19,6 +19,6 @@ export async function stopKeepAlive(): Promise<void> {
   await browser.alarms.clear(ALARM_NAME);
 }
 
-export function isKeepAliveAlarm(alarm: browser.Alarms.Alarm): boolean {
+export function isKeepAliveAlarm(alarm: Browser.alarms.Alarm): boolean {
   return alarm.name === ALARM_NAME;
 }

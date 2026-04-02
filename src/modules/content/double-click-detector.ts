@@ -11,7 +11,7 @@ export type DoubleClickResult =
   | { kind: 'different-link' };
 
 export class DoubleClickDetector {
-  private pendingTimerId: ReturnType<typeof setTimeout> | null = null;
+  private pendingTimerId: number | null = null;
   private lastAnchor: HTMLAnchorElement | null = null;
   private lastEvent: MouseEvent | null = null;
   private delay: number;

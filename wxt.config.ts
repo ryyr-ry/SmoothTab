@@ -6,7 +6,7 @@ export default defineConfig({
     name: 'Smooth Tab',
     version: '2.0.0',
     description: '__MSG_extensionDescription__',
-    author: 'ryyr_ry',
+    author: { email: 'ryyr_ry' },
     default_locale: 'en',
     permissions: ['storage', 'scripting', 'alarms'],
     host_permissions: ['http://*/*', 'https://*/*'],

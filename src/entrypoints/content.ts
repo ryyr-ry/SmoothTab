@@ -37,7 +37,7 @@ export default defineContentScript({
     // --- メッセージ受信 ---
     function handleMessage(
       message: ExtensionMessage,
-      sender: browser.Runtime.MessageSender,
+      sender: Browser.runtime.MessageSender,
     ): void {
       if (sender.tab) return;
 

@@ -32,7 +32,7 @@ export default defineBackground(() => {
   browser.runtime.onInstalled.addListener(async (details) => {
     if (details.reason === 'install') {
       await browser.storage.local.set(DEFAULT_OPTIONS);
-      browser.tabs.create({ url: browser.runtime.getURL('welcome.html') });
+      browser.tabs.create({ url: browser.runtime.getURL('/welcome.html') });
     }
 
     const tabs = await browser.tabs.query({ url: ALL_PAGES_PATTERNS });
@@ -55,7 +55,7 @@ export default defineBackground(() => {
 
   // --- メッセージルーティング ---
   browser.runtime.onMessage.addListener(
-    (msg: ExtensionMessage, sender: browser.Runtime.MessageSender) => {
+    (msg: ExtensionMessage, sender: Browser.runtime.MessageSender) => {
       if (msg.type === 'NEW_TAB') {
         handleNewTabRequest(msg, sender);
       }
@@ -68,7 +68,7 @@ export default defineBackground(() => {
 
   async function handleNewTabRequest(
     msg: NewTabMessage,
-    sender: browser.Runtime.MessageSender,
+    sender: Browser.runtime.MessageSender,
   ): Promise<void> {
     const options = await getOptions();
     await openNewTab(
@@ -82,7 +82,7 @@ export default defineBackground(() => {
   }
 
   async function handleContentScriptReady(
-    sender: browser.Runtime.MessageSender,
+    sender: Browser.runtime.MessageSender,
   ): Promise<void> {
     const options = await getOptions();
     const hostname = sender.url ? new URL(sender.url).hostname : '';
