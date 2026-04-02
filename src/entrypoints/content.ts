@@ -29,8 +29,8 @@ export default defineContentScript({
 
     const hostname = window.location.hostname;
     const adapterRegistry = new AdapterRegistry(hostname);
-    // フェイルクローズ: INIT 受信前はブラックリスト扱い
-    const guardState = { blacklisted: true };
+    // フェイルオープン: INIT 受信前も基本動作を許可（元の動作と同一）
+    const guardState = { blacklisted: false };
     const clickHandler = new ClickHandler(adapterRegistry, guardState, 300);
 
     clickHandler.attach();
