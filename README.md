@@ -19,11 +19,13 @@ Chrome と Firefox の両方に対応しています。
 ### 機能
 
 - **ダブルクリックで新タブ**: リンクをダブルクリックするだけで新しいタブで開きます。
+- **右ダブルクリックでタブを閉じる**: ページ上のどこでも右ダブルクリックで現在のタブを閉じます（オプション、デフォルト無効）。
+- **ピン留めタブ保護**: 右ダブルクリックによるピン留めタブの誤閉鎖を防止。
 - **視覚フィードバック**: ダブルクリック成功時にアニメーションで確認できます。
 - **カスタマイズ可能**: 設定ページから動作を調整できます。
   - 新しいタブをフォアグラウンド/バックグラウンドで開く
   - 新しいタブを現在のタブの隣/タブの最後に配置
-  - ダブルクリック認識の間隔を調整
+  - 左右それぞれのダブルクリック認識間隔を個別に調整
 - **ブラックリスト**: 特定のウェブサイトで機能を無効にできます。
 - **YouTube対応**: YouTube固有のイベント処理に対応済み。
 - **16言語対応**: 日本語、英語を含む16言語のUIをサポート。
@@ -147,11 +149,13 @@ Works on both **Chrome** and **Firefox**.
 ### Features
 
 - **Double-click to New Tab**: Simply double-click any link to open it in a new tab.
+- **Right Double-click to Close Tab**: Right double-click anywhere on a page to close the current tab (optional, off by default).
+- **Pinned Tab Protection**: Prevents accidentally closing pinned tabs via right double-click.
 - **Visual Feedback**: A clear animation confirms your successful double-click.
 - **Customizable**: Fine-tune the extension's behavior from the settings page.
   - Choose foreground or background tab opening
   - Set tab position (next to current or at end)
-  - Adjust double-click timing threshold
+  - Adjust double-click timing threshold for left and right clicks independently
 - **Blacklist**: Disable Smooth Tab on specific websites.
 - **YouTube Compatible**: Handles YouTube's custom event system properly.
 - **16 Languages**: UI support for 16 languages including English and Japanese.
