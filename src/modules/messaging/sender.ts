@@ -53,9 +53,9 @@ export async function broadcastToTabs(
   message: ExtensionMessage,
 ): Promise<void> {
   const tabs = await browser.tabs.query({ url: urlPatterns });
-  for (const tab of tabs) {
-    if (tab.id != null) {
-      await sendMessageToTab(tab.id, message);
-    }
-  }
+  await Promise.allSettled(
+    tabs
+      .filter((tab) => tab.id != null)
+      .map((tab) => sendMessageToTab(tab.id!, message)),
+  );
 }

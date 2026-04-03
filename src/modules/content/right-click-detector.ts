@@ -13,7 +13,7 @@ import {
 } from '@/utils/safe-natives';
 import { sendMessageToBackground, isContextValid } from '@/modules/messaging/sender';
 
-const MIN_INTERVAL_MS = 50;
+const MIN_INTERVAL_MS = 20;
 
 /**
  * Linux + Chromium では mouseup が contextmenu イベントの後に発火しない（Chromium bug #506801）。

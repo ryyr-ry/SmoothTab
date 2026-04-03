@@ -6,12 +6,12 @@
  */
 
 import { getOptions } from '@/modules/options/storage';
-import { DEFAULT_OPTIONS } from '@/modules/options/types';
+import { DEFAULT_OPTIONS, type ExtensionOptions } from '@/modules/options/types';
 import { parseBlacklist, isBlacklisted } from '@/modules/blacklist/matcher';
 import { openNewTab } from '@/modules/tab/opener';
 import { startKeepAlive, stopKeepAlive, isKeepAliveAlarm } from '@/modules/keep-alive/alarm';
 import { sendMessageToTab, broadcastToTabs } from '@/modules/messaging/sender';
-import type { ExtensionMessage, NewTabMessage, ContentScriptReadyMessage, CloseTabMessage } from '@/modules/messaging/types';
+import type { NewTabMessage, CloseTabMessage, ExtensionMessage } from '@/modules/messaging/types';
 
 const ALL_PAGES_PATTERNS = ['http://*/*', 'https://*/*'];
 const YOUTUBE_PATTERN = '*://*.youtube.com/*';
@@ -20,12 +20,20 @@ const YOUTUBE_PATTERN = '*://*.youtube.com/*';
 const CLOSE_DEDUP_MS = 2500;
 const recentlyClosedTabs = new Map<number, number>();
 
-// 動的iframe再注入リトライ
-const INJECTION_RETRY_INTERVAL_MS = 2500;
-const INJECTION_RETRY_MAX = 20;
+// 動的iframe再注入リトライ（manifest content_scripts は初回注入を担当するため控えめ）
+const INJECTION_RETRY_INTERVAL_MS = 3000;
+const INJECTION_RETRY_MAX = 5;
 const injectionTimers = new Map<number, ReturnType<typeof setInterval>>();
 
 export default defineBackground(() => {
+  // --- オプションキャッシュ（storage I/O を最小化）---
+  let cachedOptions: ExtensionOptions = { ...DEFAULT_OPTIONS };
+
+  async function refreshOptionsCache(): Promise<ExtensionOptions> {
+    cachedOptions = await getOptions();
+    return cachedOptions;
+  }
+
   // --- ヘルパー: コンテンツスクリプト注入 ---
   async function injectContentScript(tabId: number): Promise<void> {
     try {
@@ -43,6 +51,8 @@ export default defineBackground(() => {
   }
 
   // --- ヘルパー: iframe再注入リトライスケジューラ ---
+  // manifest の content_scripts が document_start でメインフレーム+既存iframeを注入するため、
+  // ここでは SPA が後から追加する動的 iframe のみを対象にする（控えめなリトライ）
   function scheduleIframeRetry(tabId: number): void {
     cancelIframeRetry(tabId);
     let remaining = INJECTION_RETRY_MAX;
@@ -91,17 +101,19 @@ export default defineBackground(() => {
       browser.tabs.create({ url: browser.runtime.getURL('/welcome.html') });
     }
 
+    // インストール/更新時のみ全既存タブに注入（通常のナビゲーションは manifest が担当）
     const tabs = await browser.tabs.query({ url: ALL_PAGES_PATTERNS });
-    for (const tab of tabs) {
-      if (tab.id == null) continue;
-      await injectContentScript(tab.id);
-    }
+    await Promise.allSettled(
+      tabs.filter((t) => t.id != null).map((t) => injectContentScript(t.id!)),
+    );
+
+    await refreshOptionsCache();
   });
 
-  // --- タブ更新時の注入（動的iframe対応）---
+  // --- タブ更新時: 動的iframe用リトライのみスケジュール ---
+  // manifest content_scripts がメインフレーム注入を担うため、即時注入は行わない
   browser.tabs.onUpdated.addListener((tabId, changeInfo) => {
-    if (changeInfo.status === 'loading') {
-      injectContentScript(tabId);
+    if (changeInfo.status === 'complete') {
       scheduleIframeRetry(tabId);
     }
   });
@@ -139,14 +151,13 @@ export default defineBackground(() => {
     msg: NewTabMessage,
     sender: Browser.runtime.MessageSender,
   ): Promise<void> {
-    const options = await getOptions();
     await openNewTab(
       {
         url: msg.url,
         senderTabId: sender.tab?.id,
         senderTabIndex: sender.tab?.index,
       },
-      options,
+      cachedOptions,
     );
   }
 
@@ -163,8 +174,7 @@ export default defineBackground(() => {
       return;
     }
 
-    const options = await getOptions();
-    if (options.protectPinnedTabs && sender.tab?.pinned) return;
+    if (cachedOptions.protectPinnedTabs && sender.tab?.pinned) return;
 
     recentlyClosedTabs.set(tabId, Date.now());
     setTimeout(() => recentlyClosedTabs.delete(tabId), CLOSE_DEDUP_MS);
@@ -179,9 +189,8 @@ export default defineBackground(() => {
   async function handleContentScriptReady(
     sender: Browser.runtime.MessageSender,
   ): Promise<void> {
-    const options = await getOptions();
     const hostname = sender.url ? new URL(sender.url).hostname : '';
-    const blacklistMap = parseBlacklist(options.blacklist);
+    const blacklistMap = parseBlacklist(cachedOptions.blacklist);
     const blacklisted = isBlacklisted(hostname, blacklistMap);
 
     if (sender.tab?.id != null) {
@@ -191,10 +200,10 @@ export default defineBackground(() => {
           type: 'INIT',
           payload: {
             blacklisted,
-            delay: options.delay,
-            enableYouTubeFix: options.enableYouTubeFix,
-            enableRightDoubleClickClose: options.enableRightDoubleClickClose,
-            rightDoubleClickDelay: options.rightDoubleClickDelay,
+            delay: cachedOptions.delay,
+            enableYouTubeFix: cachedOptions.enableYouTubeFix,
+            enableRightDoubleClickClose: cachedOptions.enableRightDoubleClickClose,
+            rightDoubleClickDelay: cachedOptions.rightDoubleClickDelay,
           },
         },
         sender.frameId,
@@ -202,8 +211,15 @@ export default defineBackground(() => {
     }
   }
 
-  // --- ストレージ変更監視 ---
+  // --- ストレージ変更監視（キャッシュ更新 + タブ通知）---
   browser.storage.onChanged.addListener((changes) => {
+    // キャッシュを即座に更新
+    for (const [key, change] of Object.entries(changes)) {
+      if (key in cachedOptions) {
+        (cachedOptions as unknown as Record<string, unknown>)[key] = change.newValue;
+      }
+    }
+
     const generalPayload: Record<string, unknown> = {};
 
     if (changes.delay) {
@@ -215,14 +231,11 @@ export default defineBackground(() => {
     }
 
     if (changes.blacklist) {
-      (async () => {
-        const options = await getOptions();
-        const blacklistMap = parseBlacklist(options.blacklist);
-        await broadcastToTabs(ALL_PAGES_PATTERNS, {
-          type: 'OPTIONS_UPDATED',
-          payload: { blacklist: blacklistMap },
-        });
-      })();
+      const blacklistMap = parseBlacklist(String(changes.blacklist.newValue ?? ''));
+      broadcastToTabs(ALL_PAGES_PATTERNS, {
+        type: 'OPTIONS_UPDATED',
+        payload: { blacklist: blacklistMap },
+      });
     }
 
     if (Object.keys(generalPayload).length > 0) {
@@ -270,9 +283,9 @@ export default defineBackground(() => {
     }
   });
 
-  // --- 初期 Keep-Alive 状態設定 ---
+  // --- 初期化: キャッシュ読み込み + Keep-Alive 状態設定 ---
   (async () => {
-    const options = await getOptions();
+    const options = await refreshOptionsCache();
     if (options.highPerformanceMode) {
       await startKeepAlive();
     } else {
