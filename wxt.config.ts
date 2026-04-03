@@ -6,7 +6,7 @@ export default defineConfig({
     name: 'Smooth Tab',
     version: '0.1.0',
     description: '__MSG_extensionDescription__',
-    author: 'ryyr_ry',
+    author: 'ryyr_ry' as any,
     default_locale: 'en',
     permissions: ['storage', 'scripting', 'alarms'],
     browser_specific_settings: {
@@ -16,7 +16,7 @@ export default defineConfig({
         data_collection_permissions: {
           required: ['none'],
         },
-      },
+      } as any,
     },
     host_permissions: ['http://*/*', 'https://*/*'],
     icons: {

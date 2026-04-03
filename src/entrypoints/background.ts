@@ -1,7 +1,8 @@
 /**
  * バックグラウンドエントリポイント。
  * メッセージルーティング、onInstalled処理、
- * ストレージ変更監視、Keep-Aliveアラームを統合する。
+ * ストレージ変更監視、Keep-Aliveアラーム、
+ * コンテンツスクリプト注入管理を統合する。
  */
 
 import { getOptions } from '@/modules/options/storage';
@@ -15,7 +16,62 @@ import type { ExtensionMessage, NewTabMessage, ContentScriptReadyMessage, CloseT
 const ALL_PAGES_PATTERNS = ['http://*/*', 'https://*/*'];
 const YOUTUBE_PATTERN = '*://*.youtube.com/*';
 
+// タブ閉鎖デデュプリケーション（同一タブの短時間内重複閉鎖を防止）
+const CLOSE_DEDUP_MS = 2500;
+const recentlyClosedTabs = new Map<number, number>();
+
+// 動的iframe再注入リトライ
+const INJECTION_RETRY_INTERVAL_MS = 2500;
+const INJECTION_RETRY_MAX = 20;
+const injectionTimers = new Map<number, ReturnType<typeof setInterval>>();
+
 export default defineBackground(() => {
+  // --- ヘルパー: コンテンツスクリプト注入 ---
+  async function injectContentScript(tabId: number): Promise<void> {
+    try {
+      await browser.scripting.executeScript({
+        target: { tabId, allFrames: true },
+        files: ['/content-scripts/content.js'],
+      });
+      await browser.scripting.insertCSS({
+        target: { tabId, allFrames: true },
+        files: ['content-scripts/content.css'],
+      });
+    } catch {
+      // 保護されたページでは失敗する（正常動作）
+    }
+  }
+
+  // --- ヘルパー: iframe再注入リトライスケジューラ ---
+  function scheduleIframeRetry(tabId: number): void {
+    cancelIframeRetry(tabId);
+    let remaining = INJECTION_RETRY_MAX;
+    const timerId = setInterval(async () => {
+      remaining--;
+      if (remaining <= 0) {
+        cancelIframeRetry(tabId);
+        return;
+      }
+      try {
+        const tab = await browser.tabs.get(tabId);
+        if (tab?.status === 'complete') {
+          await injectContentScript(tabId);
+        }
+      } catch {
+        cancelIframeRetry(tabId);
+      }
+    }, INJECTION_RETRY_INTERVAL_MS);
+    injectionTimers.set(tabId, timerId);
+  }
+
+  function cancelIframeRetry(tabId: number): void {
+    const timerId = injectionTimers.get(tabId);
+    if (timerId != null) {
+      clearInterval(timerId);
+      injectionTimers.delete(tabId);
+    }
+  }
+
   // --- グローバルエラーハンドラ ---
   self.addEventListener('error', (event) => {
     console.error('Smooth Tab [background error]:', {
@@ -38,19 +94,28 @@ export default defineBackground(() => {
     const tabs = await browser.tabs.query({ url: ALL_PAGES_PATTERNS });
     for (const tab of tabs) {
       if (tab.id == null) continue;
-      try {
-        await browser.scripting.executeScript({
-          target: { tabId: tab.id, allFrames: true },
-          files: ['content-scripts/content.js'],
-        });
-        await browser.scripting.insertCSS({
-          target: { tabId: tab.id, allFrames: true },
-          files: ['content-scripts/content.css'],
-        });
-      } catch {
-        // 保護されたページでは失敗する（正常動作）
-      }
+      await injectContentScript(tab.id);
     }
+  });
+
+  // --- タブ更新時の注入（動的iframe対応）---
+  browser.tabs.onUpdated.addListener((tabId, changeInfo) => {
+    if (changeInfo.status === 'loading') {
+      injectContentScript(tabId);
+      scheduleIframeRetry(tabId);
+    }
+  });
+
+  // --- BF Cache復元時の注入 ---
+  browser.tabs.onReplaced.addListener((addedTabId, removedTabId) => {
+    cancelIframeRetry(removedTabId);
+    injectContentScript(addedTabId);
+  });
+
+  // --- タブ閉鎖時のクリーンアップ ---
+  browser.tabs.onRemoved.addListener((tabId) => {
+    cancelIframeRetry(tabId);
+    recentlyClosedTabs.delete(tabId);
   });
 
   // --- メッセージルーティング ---
@@ -92,8 +157,17 @@ export default defineBackground(() => {
     const tabId = sender.tab?.id;
     if (tabId == null) return;
 
+    // デデュプリケーション: 同一タブの短時間内重複閉鎖を防止
+    const lastClosed = recentlyClosedTabs.get(tabId);
+    if (lastClosed != null && Date.now() - lastClosed < CLOSE_DEDUP_MS) {
+      return;
+    }
+
     const options = await getOptions();
     if (options.protectPinnedTabs && sender.tab?.pinned) return;
+
+    recentlyClosedTabs.set(tabId, Date.now());
+    setTimeout(() => recentlyClosedTabs.delete(tabId), CLOSE_DEDUP_MS);
 
     try {
       await browser.tabs.remove(tabId);
