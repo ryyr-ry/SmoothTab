@@ -12,9 +12,9 @@ export default defineConfig({
     browser_specific_settings: {
       gecko: {
         id: 'smooth-tab@ryyr-ry',
-        strict_min_version: '109.0',
+        strict_min_version: '140.0',
         data_collection_permissions: {
-          required: false,
+          required: ['none'],
         },
       },
     },
