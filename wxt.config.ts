@@ -6,9 +6,18 @@ export default defineConfig({
     name: 'Smooth Tab',
     version: '0.1.0',
     description: '__MSG_extensionDescription__',
-    author: { email: 'ryyr_ry' },
+    author: 'ryyr_ry',
     default_locale: 'en',
     permissions: ['storage', 'scripting', 'alarms'],
+    browser_specific_settings: {
+      gecko: {
+        id: 'smooth-tab@ryyr-ry',
+        strict_min_version: '109.0',
+        data_collection_permissions: {
+          required: false,
+        },
+      },
+    },
     host_permissions: ['http://*/*', 'https://*/*'],
     icons: {
       '48': 'icons/icon-48.png',
