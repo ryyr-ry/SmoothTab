@@ -6,19 +6,19 @@ export default defineConfig({
     name: 'Smooth Tab',
     version: '0.1.0',
     description: '__MSG_extensionDescription__',
-    // WXT の型定義が author を string として受け付けないため as any が必要
-    author: 'ryyr_ry' as any,
+    // @ts-expect-error WXT の型定義が author を string フィールドとして持たない
+    author: 'ryyr_ry',
     default_locale: 'en',
     permissions: ['storage', 'scripting', 'alarms'],
     browser_specific_settings: {
       gecko: {
         id: 'smooth-tab@ryyr-ry',
         strict_min_version: '142.0',
+        // @ts-expect-error Firefox AMO 要件だが WXT の gecko 型定義に未定義
         data_collection_permissions: {
           required: ['none'],
         },
-      // WXT の gecko 型定義が data_collection_permissions を含まないため as any が必要
-      } as any,
+      },
     },
     host_permissions: ['http://*/*', 'https://*/*'],
     icons: {

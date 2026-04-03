@@ -276,7 +276,13 @@ export default defineBackground(() => {
   });
 
   // --- ツールバーアイコンクリック（MV2: browserAction / MV3: action）---
-  const actionApi = browser.action ?? (browser as any).browserAction;
+  interface MV2BrowserAction {
+    onClicked: {
+      addListener(callback: () => void): void;
+    };
+  }
+  const actionApi = browser.action
+    ?? (browser as unknown as { browserAction?: MV2BrowserAction }).browserAction;
   if (actionApi?.onClicked) {
     actionApi.onClicked.addListener(() => {
       browser.runtime.openOptionsPage();
