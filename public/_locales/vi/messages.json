@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Giữ cho tiến trình nền của tiện ích hoạt động để loại bỏ độ trễ của tab mới. Có thể làm tăng nhẹ việc sử dụng bộ nhớ."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Đóng tab bằng nhấp đúp chuột phải"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Nhấp đúp chuột phải vào bất kỳ đâu trên trang để đóng tab hiện tại. Menu ngữ cảnh sẽ xuất hiện trong giây lát."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Bảo vệ tab đã ghim"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Ngăn các tab đã ghim bị đóng bằng nhấp đúp chuột phải."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Độ trễ nhấp đúp chuột phải (tính bằng mili giây)"
+   },
+   "rightClickTestLabel": {
+      "message": "Nhấp đúp chuột phải:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Đang chờ"
+   },
+   "rightClickTestDetected": {
+      "message": "Đã phát hiện"
    }
 }

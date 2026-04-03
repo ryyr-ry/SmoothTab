@@ -23,4 +23,9 @@ export default defineConfig({
       default_title: '__MSG_extensionName__',
     },
   },
+  webExt: {
+    firefoxPref: {
+      'intl.locale.requested': 'ja',
+    },
+  },
 });

@@ -10,7 +10,7 @@ import { parseBlacklist, isBlacklisted } from '@/modules/blacklist/matcher';
 import { openNewTab } from '@/modules/tab/opener';
 import { startKeepAlive, stopKeepAlive, isKeepAliveAlarm } from '@/modules/keep-alive/alarm';
 import { sendMessageToTab, broadcastToTabs } from '@/modules/messaging/sender';
-import type { ExtensionMessage, NewTabMessage, ContentScriptReadyMessage } from '@/modules/messaging/types';
+import type { ExtensionMessage, NewTabMessage, ContentScriptReadyMessage, CloseTabMessage } from '@/modules/messaging/types';
 
 const ALL_PAGES_PATTERNS = ['http://*/*', 'https://*/*', 'file://*/*'];
 const YOUTUBE_PATTERN = '*://*.youtube.com/*';
@@ -60,6 +60,10 @@ export default defineBackground(() => {
         handleNewTabRequest(msg, sender);
       }
 
+      if (msg.type === 'CLOSE_TAB') {
+        handleCloseTabRequest(msg, sender);
+      }
+
       if (msg.type === 'CONTENT_SCRIPT_READY') {
         handleContentScriptReady(sender);
       }
@@ -81,6 +85,23 @@ export default defineBackground(() => {
     );
   }
 
+  async function handleCloseTabRequest(
+    _msg: CloseTabMessage,
+    sender: Browser.runtime.MessageSender,
+  ): Promise<void> {
+    const tabId = sender.tab?.id;
+    if (tabId == null) return;
+
+    const options = await getOptions();
+    if (options.protectPinnedTabs && sender.tab?.pinned) return;
+
+    try {
+      await browser.tabs.remove(tabId);
+    } catch {
+      // タブが既に閉じられている場合は正常
+    }
+  }
+
   async function handleContentScriptReady(
     sender: Browser.runtime.MessageSender,
   ): Promise<void> {
@@ -98,6 +119,8 @@ export default defineBackground(() => {
             blacklisted,
             delay: options.delay,
             enableYouTubeFix: options.enableYouTubeFix,
+            enableRightDoubleClickClose: options.enableRightDoubleClickClose,
+            rightDoubleClickDelay: options.rightDoubleClickDelay,
           },
         },
         sender.frameId,
@@ -111,6 +134,10 @@ export default defineBackground(() => {
 
     if (changes.delay) {
       generalPayload.delay = changes.delay.newValue;
+    }
+
+    if (changes.rightDoubleClickDelay) {
+      generalPayload.rightDoubleClickDelay = changes.rightDoubleClickDelay.newValue;
     }
 
     if (changes.blacklist) {
@@ -127,7 +154,7 @@ export default defineBackground(() => {
     if (Object.keys(generalPayload).length > 0) {
       broadcastToTabs(ALL_PAGES_PATTERNS, {
         type: 'OPTIONS_UPDATED',
-        payload: generalPayload as { delay?: number },
+        payload: generalPayload as { delay?: number; rightDoubleClickDelay?: number },
       });
     }
 
@@ -135,6 +162,13 @@ export default defineBackground(() => {
       broadcastToTabs([YOUTUBE_PATTERN], {
         type: 'YOUTUBE_FIX_TOGGLED',
         payload: { enabled: Boolean(changes.enableYouTubeFix.newValue) },
+      });
+    }
+
+    if (changes.enableRightDoubleClickClose) {
+      broadcastToTabs(ALL_PAGES_PATTERNS, {
+        type: 'RIGHT_CLICK_CLOSE_TOGGLED',
+        payload: { enabled: Boolean(changes.enableRightDoubleClickClose.newValue) },
       });
     }
 

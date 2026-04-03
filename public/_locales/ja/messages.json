@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "拡張機能のバックグラウンドプロセスを有効にし続け、遅延を削減します。メモリ使用量がわずかに増加することがあります。"
+   },
+   "optionRightDoubleClickClose": {
+      "message": "右ダブルクリックでタブを閉じる"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "ページ上の任意の場所で右ダブルクリックすると、現在のタブが閉じます。コンテキストメニューは一時的に表示されます。"
+   },
+   "optionProtectPinnedTabs": {
+      "message": "ピン留めタブを保護する"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "右ダブルクリックによるピン留めタブの閉鎖を防止します。"
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "右ダブルクリックの遅延 (ミリ秒)"
+   },
+   "rightClickTestLabel": {
+      "message": "右ダブルクリック:"
+   },
+   "rightClickTestWaiting": {
+      "message": "待機中"
+   },
+   "rightClickTestDetected": {
+      "message": "検出"
    }
 }

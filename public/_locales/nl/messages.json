@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Houdt het achtergrondproces van de extensie actief om vertragingen bij nieuwe tabbladen te elimineren. Kan het geheugengebruik enigszins verhogen."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Tab sluiten met rechts dubbelklikken"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Dubbelklik met rechts ergens op een pagina om het huidige tabblad te sluiten. Het contextmenu verschijnt kort."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Vastgezette tabbladen beschermen"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Voorkomt dat vastgezette tabbladen worden gesloten door rechts dubbelklikken."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Vertraging rechts dubbelklik (in milliseconden)"
+   },
+   "rightClickTestLabel": {
+      "message": "Rechts dubbelklik:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Wachten"
+   },
+   "rightClickTestDetected": {
+      "message": "Gedetecteerd"
    }
 }

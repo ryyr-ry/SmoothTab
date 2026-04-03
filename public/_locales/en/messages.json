@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Keeps the extension's background process active to eliminate new tab delays. May slightly increase memory usage."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Close tab by right double-click"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Right double-click anywhere on a page to close the current tab. The context menu will still appear briefly."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Protect pinned tabs"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Prevents pinned tabs from being closed by right double-click."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Right double-click delay (in milliseconds)"
+   },
+   "rightClickTestLabel": {
+      "message": "Right double-click:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Waiting"
+   },
+   "rightClickTestDetected": {
+      "message": "Detected"
    }
 }

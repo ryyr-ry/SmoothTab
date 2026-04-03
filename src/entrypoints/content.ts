@@ -5,6 +5,7 @@
 
 import './content/style.css';
 import { ClickHandler } from '@/modules/content/click-handler';
+import { RightClickDetector } from '@/modules/content/right-click-detector';
 import { AdapterRegistry } from '@/modules/site-adapters/adapter-registry';
 import { isBlacklisted as checkBlacklisted, type BlacklistMap } from '@/modules/blacklist/matcher';
 import { sendMessageToBackground } from '@/modules/messaging/sender';
@@ -32,8 +33,10 @@ export default defineContentScript({
     // フェイルオープン: INIT 受信前も基本動作を許可（元の動作と同一）
     const guardState = { blacklisted: false };
     const clickHandler = new ClickHandler(adapterRegistry, guardState, 300);
+    const rightClickDetector = new RightClickDetector(false, 500);
 
     clickHandler.attach();
+    rightClickDetector.attach();
 
     // --- メッセージ受信 ---
     function handleMessage(
@@ -47,11 +50,16 @@ export default defineContentScript({
           guardState.blacklisted = message.payload.blacklisted;
           clickHandler.setDelay(message.payload.delay);
           adapterRegistry.setYouTubeFixEnabled(message.payload.enableYouTubeFix);
+          rightClickDetector.setEnabled(message.payload.enableRightDoubleClickClose);
+          rightClickDetector.setDelay(message.payload.rightDoubleClickDelay);
           break;
 
         case 'OPTIONS_UPDATED':
           if (typeof message.payload.delay === 'number') {
             clickHandler.setDelay(message.payload.delay);
+          }
+          if (typeof message.payload.rightDoubleClickDelay === 'number') {
+            rightClickDetector.setDelay(message.payload.rightDoubleClickDelay);
           }
           if (message.payload.blacklist) {
             const blacklistMap = message.payload.blacklist as BlacklistMap;
@@ -62,6 +70,10 @@ export default defineContentScript({
         case 'YOUTUBE_FIX_TOGGLED':
           adapterRegistry.setYouTubeFixEnabled(message.payload.enabled);
           break;
+
+        case 'RIGHT_CLICK_CLOSE_TOGGLED':
+          rightClickDetector.setEnabled(message.payload.enabled);
+          break;
       }
     }
 
@@ -70,6 +82,7 @@ export default defineContentScript({
     // --- ティアダウン ---
     function destroy(): void {
       clickHandler.detach();
+      rightClickDetector.detach();
       browser.runtime.onMessage.removeListener(handleMessage);
       delete global[INSTANCE_KEY];
     }
@@ -78,6 +91,7 @@ export default defineContentScript({
 
     window.addEventListener('beforeunload', () => {
       clickHandler.detach();
+      rightClickDetector.detach();
     });
 
     // --- 初期化完了を通知（リトライ付き）---

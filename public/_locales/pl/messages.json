@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Utrzymuje aktywność procesu w tle rozszerzenia, aby wyeliminować opóźnienia w otwieraniu nowych kart. Może nieznacznie zwiększyć zużycie pamięci."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Zamknij kartę podwójnym kliknięciem prawym przyciskiem"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Kliknij dwukrotnie prawym przyciskiem w dowolnym miejscu na stronie, aby zamknąć bieżącą kartę. Menu kontekstowe pojawi się na chwilę."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Chroń przypięte karty"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Zapobiega zamykaniu przypiętych kart przez podwójne kliknięcie prawym przyciskiem."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Opóźnienie podwójnego kliknięcia prawym przyciskiem (w milisekundach)"
+   },
+   "rightClickTestLabel": {
+      "message": "Podwójne kliknięcie prawym:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Oczekiwanie"
+   },
+   "rightClickTestDetected": {
+      "message": "Wykryto"
    }
 }

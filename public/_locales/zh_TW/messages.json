@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "保持擴充功能的背景處理程序處於活動狀態以消除新分頁的延遲。可能會稍微增加記憶體使用量。"
+   },
+   "optionRightDoubleClickClose": {
+      "message": "右鍵雙擊關閉分頁"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "在頁面任意位置右鍵雙擊即可關閉目前的分頁。右鍵選單會短暫出現。"
+   },
+   "optionProtectPinnedTabs": {
+      "message": "保護釘選分頁"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "防止釘選分頁被右鍵雙擊關閉。"
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "右鍵雙擊延遲（毫秒）"
+   },
+   "rightClickTestLabel": {
+      "message": "右鍵雙擊："
+   },
+   "rightClickTestWaiting": {
+      "message": "等待中"
+   },
+   "rightClickTestDetected": {
+      "message": "已偵測"
    }
 }

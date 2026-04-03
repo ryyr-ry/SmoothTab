@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Mantiene attivo il processo in background dell'estensione per eliminare i ritardi delle nuove schede. Potrebbe aumentare leggermente l'utilizzo della memoria."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Chiudi scheda con doppio clic destro"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Fai doppio clic destro ovunque su una pagina per chiudere la scheda corrente. Il menu contestuale apparirà brevemente."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Proteggi le schede fissate"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Impedisce la chiusura delle schede fissate tramite doppio clic destro."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Ritardo del doppio clic destro (in millisecondi)"
+   },
+   "rightClickTestLabel": {
+      "message": "Doppio clic destro:"
+   },
+   "rightClickTestWaiting": {
+      "message": "In attesa"
+   },
+   "rightClickTestDetected": {
+      "message": "Rilevato"
    }
 }

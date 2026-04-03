@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Menjaga proses latar belakang ekstensi tetap aktif untuk menghilangkan penundaan tab baru. Mungkin sedikit meningkatkan penggunaan memori."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Tutup tab dengan klik kanan ganda"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Klik kanan ganda di mana saja pada halaman untuk menutup tab saat ini. Menu konteks akan muncul sebentar."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Lindungi tab yang disematkan"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Mencegah tab yang disematkan ditutup oleh klik kanan ganda."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Jeda klik kanan ganda (dalam milidetik)"
+   },
+   "rightClickTestLabel": {
+      "message": "Klik kanan ganda:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Menunggu"
+   },
+   "rightClickTestDetected": {
+      "message": "Terdeteksi"
    }
 }

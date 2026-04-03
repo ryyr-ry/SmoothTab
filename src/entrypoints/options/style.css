@@ -153,3 +153,42 @@ textarea {
     border-radius: 6px;
     opacity: 1;
 }
+
+#right-click-test {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+}
+
+#right-click-test-label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+#right-click-test-status {
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    color: var(--text-secondary-color);
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+#right-click-test-status.detected {
+    color: #16a34a;
+    background-color: #f0fdf4;
+    border-color: #86efac;
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+    #right-click-test-status.detected {
+        color: #4ade80;
+        background-color: #052e16;
+        border-color: #166534;
+    }
+}

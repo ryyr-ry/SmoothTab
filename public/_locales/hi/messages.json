@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "नए टैब की देरी को खत्म करने के लिए एक्सटेंशन की पृष्ठभूमि प्रक्रिया को सक्रिय रखता है। मेमोरी का उपयोग थोड़ा बढ़ सकता है।"
+   },
+   "optionRightDoubleClickClose": {
+      "message": "दायाँ डबल-क्लिक करके टैब बंद करें"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "पेज पर कहीं भी दायाँ डबल-क्लिक करके वर्तमान टैब बंद करें। संदर्भ मेनू संक्षेप में दिखाई देगा।"
+   },
+   "optionProtectPinnedTabs": {
+      "message": "पिन किए गए टैब की सुरक्षा करें"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "दायाँ डबल-क्लिक से पिन किए गए टैब को बंद होने से रोकता है।"
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "दायाँ डबल-क्लिक विलंब (मिलीसेकंड में)"
+   },
+   "rightClickTestLabel": {
+      "message": "दायाँ डबल-क्लिक:"
+   },
+   "rightClickTestWaiting": {
+      "message": "प्रतीक्षा"
+   },
+   "rightClickTestDetected": {
+      "message": "पहचाना गया"
    }
 }

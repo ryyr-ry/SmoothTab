@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Maintient le processus d'arrière-plan de l'extension actif pour éliminer les délais des nouveaux onglets. Peut augmenter légèrement l'utilisation de la mémoire."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Fermer l'onglet par double-clic droit"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Double-cliquez droit n'importe où sur une page pour fermer l'onglet actuel. Le menu contextuel apparaîtra brièvement."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Protéger les onglets épinglés"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Empêche la fermeture des onglets épinglés par double-clic droit."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Délai du double-clic droit (en millisecondes)"
+   },
+   "rightClickTestLabel": {
+      "message": "Double-clic droit :"
+   },
+   "rightClickTestWaiting": {
+      "message": "En attente"
+   },
+   "rightClickTestDetected": {
+      "message": "Détecté"
    }
 }

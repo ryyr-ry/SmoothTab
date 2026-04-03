@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Mantiene activo el proceso en segundo plano de la extensión para eliminar retrasos en las nuevas pestañas. Puede aumentar ligeramente el uso de memoria."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Cerrar pestaña con doble clic derecho"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Haz doble clic derecho en cualquier lugar de la página para cerrar la pestaña actual. El menú contextual aparecerá brevemente."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Proteger pestañas fijadas"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Evita que las pestañas fijadas sean cerradas por doble clic derecho."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Retraso del doble clic derecho (en milisegundos)"
+   },
+   "rightClickTestLabel": {
+      "message": "Doble clic derecho:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Esperando"
+   },
+   "rightClickTestDetected": {
+      "message": "Detectado"
    }
 }

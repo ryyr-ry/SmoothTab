@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "保持扩展的后台进程活动以消除新标签页延迟。可能会略微增加内存使用量。"
+   },
+   "optionRightDoubleClickClose": {
+      "message": "右键双击关闭标签页"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "在页面任意位置右键双击即可关闭当前标签页。右键菜单会短暂出现。"
+   },
+   "optionProtectPinnedTabs": {
+      "message": "保护固定标签页"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "防止固定标签页被右键双击关闭。"
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "右键双击延迟（毫秒）"
+   },
+   "rightClickTestLabel": {
+      "message": "右键双击："
+   },
+   "rightClickTestWaiting": {
+      "message": "等待中"
+   },
+   "rightClickTestDetected": {
+      "message": "已检测"
    }
 }

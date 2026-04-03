@@ -14,6 +14,8 @@ import { sendMessageToBackground } from '@/modules/messaging/sender';
 
 type I18nKey = Parameters<typeof browser.i18n.getMessage>[0];
 
+document.documentElement.lang = browser.i18n.getUILanguage();
+
 document.querySelectorAll<HTMLElement>('[i18n]').forEach((el) => {
   const key = el.getAttribute('i18n') as I18nKey | null;
   if (key) {

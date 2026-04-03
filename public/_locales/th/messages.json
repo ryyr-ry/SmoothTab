@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "ทำให้กระบวนการพื้นหลังของส่วนขยายทำงานอยู่เสมอเพื่อกำจัดความล่าช้าของแท็บใหม่ อาจใช้หน่วยความจำเพิ่มขึ้นเล็กน้อย"
+   },
+   "optionRightDoubleClickClose": {
+      "message": "ปิดแท็บด้วยการดับเบิลคลิกขวา"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "ดับเบิลคลิกขวาที่ใดก็ได้บนหน้าเว็บเพื่อปิดแท็บปัจจุบัน เมนูบริบทจะแสดงขึ้นชั่วครู่"
+   },
+   "optionProtectPinnedTabs": {
+      "message": "ป้องกันแท็บที่ปักหมุด"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "ป้องกันไม่ให้แท็บที่ปักหมุดถูกปิดด้วยการดับเบิลคลิกขวา"
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "ความหน่วงดับเบิลคลิกขวา (มิลลิวินาที)"
+   },
+   "rightClickTestLabel": {
+      "message": "ดับเบิลคลิกขวา:"
+   },
+   "rightClickTestWaiting": {
+      "message": "รอ"
+   },
+   "rightClickTestDetected": {
+      "message": "ตรวจพบ"
    }
 }

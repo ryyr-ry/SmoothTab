@@ -3,7 +3,7 @@
  * browser.storage.local をラップし、ExtensionOptions 型を保証する。
  */
 
-import { DEFAULT_OPTIONS, clampDelay, type ExtensionOptions } from './types';
+import { DEFAULT_OPTIONS, clampDelay, clampRightClickDelay, type ExtensionOptions } from './types';
 
 export async function getOptions(): Promise<ExtensionOptions> {
   try {
@@ -15,6 +15,9 @@ export async function getOptions(): Promise<ExtensionOptions> {
       blacklist: typeof result.blacklist === 'string' ? result.blacklist : DEFAULT_OPTIONS.blacklist,
       enableYouTubeFix: Boolean(result.enableYouTubeFix),
       highPerformanceMode: Boolean(result.highPerformanceMode),
+      enableRightDoubleClickClose: Boolean(result.enableRightDoubleClickClose),
+      protectPinnedTabs: Boolean(result.protectPinnedTabs),
+      rightDoubleClickDelay: clampRightClickDelay(parseInt(String(result.rightDoubleClickDelay), 10)),
     };
   } catch (error) {
     console.error('Smooth Tab [getOptions] ストレージ読み込み失敗。デフォルト値を使用。', error);

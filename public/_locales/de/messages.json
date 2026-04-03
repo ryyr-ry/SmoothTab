@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Hält den Hintergrundprozess der Erweiterung aktiv, um Verzögerungen bei neuen Tabs zu eliminieren. Kann den Speicherverbrauch leicht erhöhen."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Tab durch Rechts-Doppelklick schließen"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Rechts-Doppelklick auf eine beliebige Stelle einer Seite, um den aktuellen Tab zu schließen. Das Kontextmenü wird kurz angezeigt."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Angeheftete Tabs schützen"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Verhindert, dass angeheftete Tabs durch Rechts-Doppelklick geschlossen werden."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Rechts-Doppelklick-Verzögerung (in Millisekunden)"
+   },
+   "rightClickTestLabel": {
+      "message": "Rechts-Doppelklick:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Warten"
+   },
+   "rightClickTestDetected": {
+      "message": "Erkannt"
    }
 }

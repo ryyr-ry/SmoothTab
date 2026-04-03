@@ -13,6 +13,8 @@ export interface InitMessage {
     readonly blacklisted: boolean;
     readonly delay: number;
     readonly enableYouTubeFix: boolean;
+    readonly enableRightDoubleClickClose: boolean;
+    readonly rightDoubleClickDelay: number;
   };
 }
 
@@ -21,11 +23,16 @@ export interface NewTabMessage {
   readonly url: string;
 }
 
+export interface CloseTabMessage {
+  readonly type: 'CLOSE_TAB';
+}
+
 export interface OptionsUpdatedMessage {
   readonly type: 'OPTIONS_UPDATED';
   readonly payload: {
     readonly delay?: number;
     readonly blacklist?: Record<string, boolean>;
+    readonly rightDoubleClickDelay?: number;
   };
 }
 
@@ -36,11 +43,20 @@ export interface YouTubeFixToggledMessage {
   };
 }
 
+export interface RightClickCloseToggledMessage {
+  readonly type: 'RIGHT_CLICK_CLOSE_TOGGLED';
+  readonly payload: {
+    readonly enabled: boolean;
+  };
+}
+
 export type ExtensionMessage =
   | ContentScriptReadyMessage
   | InitMessage
   | NewTabMessage
+  | CloseTabMessage
   | OptionsUpdatedMessage
-  | YouTubeFixToggledMessage;
+  | YouTubeFixToggledMessage
+  | RightClickCloseToggledMessage;
 
 export type MessageType = ExtensionMessage['type'];

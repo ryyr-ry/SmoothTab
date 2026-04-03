@@ -55,5 +55,29 @@
    },
    "optionHighPerformanceModeHelper": {
       "message": "Mantém o processo de fundo da extensão ativo para eliminar atrasos em novas abas. Pode aumentar ligeiramente o uso de memória."
+   },
+   "optionRightDoubleClickClose": {
+      "message": "Fechar aba com duplo clique direito"
+   },
+   "optionRightDoubleClickCloseHelper": {
+      "message": "Clique duas vezes com o botão direito em qualquer lugar da página para fechar a aba atual. O menu de contexto aparecerá brevemente."
+   },
+   "optionProtectPinnedTabs": {
+      "message": "Proteger abas fixadas"
+   },
+   "optionProtectPinnedTabsHelper": {
+      "message": "Impede que abas fixadas sejam fechadas por duplo clique direito."
+   },
+   "rightDoubleClickDelayLabel": {
+      "message": "Atraso do duplo clique direito (em milissegundos)"
+   },
+   "rightClickTestLabel": {
+      "message": "Duplo clique direito:"
+   },
+   "rightClickTestWaiting": {
+      "message": "Aguardando"
+   },
+   "rightClickTestDetected": {
+      "message": "Detectado"
    }
 }
