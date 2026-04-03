@@ -12,7 +12,7 @@ import { startKeepAlive, stopKeepAlive, isKeepAliveAlarm } from '@/modules/keep-
 import { sendMessageToTab, broadcastToTabs } from '@/modules/messaging/sender';
 import type { ExtensionMessage, NewTabMessage, ContentScriptReadyMessage, CloseTabMessage } from '@/modules/messaging/types';
 
-const ALL_PAGES_PATTERNS = ['http://*/*', 'https://*/*', 'file://*/*'];
+const ALL_PAGES_PATTERNS = ['http://*/*', 'https://*/*'];
 const YOUTUBE_PATTERN = '*://*.youtube.com/*';
 
 export default defineBackground(() => {
@@ -41,11 +41,11 @@ export default defineBackground(() => {
       try {
         await browser.scripting.executeScript({
           target: { tabId: tab.id, allFrames: true },
-          files: ['/content-scripts/content.js'],
+          files: ['content-scripts/content.js'],
         });
         await browser.scripting.insertCSS({
           target: { tabId: tab.id, allFrames: true },
-          files: ['/content-scripts/content.css'],
+          files: ['content-scripts/content.css'],
         });
       } catch {
         // 保護されたページでは失敗する（正常動作）
