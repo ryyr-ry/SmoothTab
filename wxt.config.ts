@@ -4,7 +4,7 @@ export default defineConfig({
   srcDir: 'src',
   manifest: {
     name: 'Smooth Tab',
-    version: '2.0.0',
+    version: '0.1.0',
     description: '__MSG_extensionDescription__',
     author: { email: 'ryyr_ry' },
     default_locale: 'en',
