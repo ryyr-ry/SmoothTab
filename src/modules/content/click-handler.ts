@@ -2,6 +2,11 @@
  * クリックハンドラ（オーケストレータ）。
  * link-resolver, click-guard, double-click-detector, animation, SiteAdapter を統合する。
  * 自身はサイト固有ロジックを一切持たない。
+ *
+ * 設計上の注意: different-link の場合、最初のリンクのクリックは消失する。
+ * これは意図的な動作で、ユーザーが別リンクに注目を移したことを意味する。
+ * 最初のリンクをリプレイすると、2つの同時ナビゲーションが発生し、
+ * ユーザー体験が悪化するため行わない。
  */
 
 import { safeAddEventListener, safeRemoveEventListener } from '@/utils/safe-natives';
@@ -10,6 +15,7 @@ import { shouldIgnoreClick, shouldIgnoreAnchor, type ClickGuardState } from './c
 import { DoubleClickDetector } from './double-click-detector';
 import { triggerDoubleClickAnimation } from './animation';
 import { EventShield } from './event-shield';
+import type { SiteAdapter } from '@/modules/site-adapters/types';
 import type { AdapterRegistry } from '@/modules/site-adapters/adapter-registry';
 import { sendMessageToBackground, isContextValid } from '@/modules/messaging/sender';
 
@@ -52,12 +58,7 @@ export class ClickHandler {
     this.detector.setDelay(delay);
   }
 
-  setBlacklisted(blacklisted: boolean): void {
-    (this.guardState as { blacklisted: boolean }).blacklisted = blacklisted;
-  }
-
   private onClick(e: MouseEvent): void {
-    // 拡張コンテキスト無効化時は自動デタッチ
     if (!isContextValid()) {
       this.detach();
       return;
@@ -71,7 +72,7 @@ export class ClickHandler {
     }
 
     const adapter = this.adapterRegistry.getAdapter();
-    const result = this.detector.detect(anchor, e);
+    const result = this.detector.detect(anchor);
 
     switch (result.kind) {
       case 'double-click':
@@ -88,7 +89,7 @@ export class ClickHandler {
   private onDoubleClick(
     e: MouseEvent,
     anchor: HTMLAnchorElement,
-    adapter: import('@/modules/site-adapters/types').SiteAdapter,
+    adapter: SiteAdapter,
   ): void {
     this.resetState();
     sendMessageToBackground({ type: 'NEW_TAB', url: anchor.href });
@@ -102,7 +103,7 @@ export class ClickHandler {
   private onFirstClick(
     e: MouseEvent,
     anchor: HTMLAnchorElement,
-    adapter: import('@/modules/site-adapters/types').SiteAdapter,
+    adapter: SiteAdapter,
   ): void {
     if (adapter.needsEventShield(anchor)) {
       this.shield.deploy();

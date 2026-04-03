@@ -7,7 +7,7 @@
 
 import { getOptions } from '@/modules/options/storage';
 import { DEFAULT_OPTIONS, type ExtensionOptions } from '@/modules/options/types';
-import { parseBlacklist, isBlacklisted } from '@/modules/blacklist/matcher';
+import { parseBlacklist, isBlacklisted, type BlacklistMap } from '@/modules/blacklist/matcher';
 import { openNewTab } from '@/modules/tab/opener';
 import { startKeepAlive, stopKeepAlive, isKeepAliveAlarm } from '@/modules/keep-alive/alarm';
 import { sendMessageToTab, broadcastToTabs } from '@/modules/messaging/sender';
@@ -28,9 +28,13 @@ const injectionTimers = new Map<number, ReturnType<typeof setInterval>>();
 export default defineBackground(() => {
   // --- オプションキャッシュ（storage I/O を最小化）---
   let cachedOptions: ExtensionOptions = { ...DEFAULT_OPTIONS };
+  let cachedBlacklistMap: BlacklistMap = {};
+  // 初期化完了を待機するための Promise
+  let initReady: Promise<void>;
 
   async function refreshOptionsCache(): Promise<ExtensionOptions> {
     cachedOptions = await getOptions();
+    cachedBlacklistMap = parseBlacklist(cachedOptions.blacklist);
     return cachedOptions;
   }
 
@@ -112,8 +116,9 @@ export default defineBackground(() => {
 
   // --- タブ更新時: 動的iframe用リトライのみスケジュール ---
   // manifest content_scripts がメインフレーム注入を担うため、即時注入は行わない
-  browser.tabs.onUpdated.addListener((tabId, changeInfo) => {
-    if (changeInfo.status === 'complete') {
+  // http/https のみ対象（chrome://, about:, extension ページは除外）
+  browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.status === 'complete' && tab.url && /^https?:\/\//.test(tab.url)) {
       scheduleIframeRetry(tabId);
     }
   });
@@ -151,6 +156,7 @@ export default defineBackground(() => {
     msg: NewTabMessage,
     sender: Browser.runtime.MessageSender,
   ): Promise<void> {
+    await initReady;
     await openNewTab(
       {
         url: msg.url,
@@ -174,6 +180,7 @@ export default defineBackground(() => {
       return;
     }
 
+    await initReady;
     if (cachedOptions.protectPinnedTabs && sender.tab?.pinned) return;
 
     recentlyClosedTabs.set(tabId, Date.now());
@@ -189,9 +196,9 @@ export default defineBackground(() => {
   async function handleContentScriptReady(
     sender: Browser.runtime.MessageSender,
   ): Promise<void> {
+    await initReady;
     const hostname = sender.url ? new URL(sender.url).hostname : '';
-    const blacklistMap = parseBlacklist(cachedOptions.blacklist);
-    const blacklisted = isBlacklisted(hostname, blacklistMap);
+    const blacklisted = isBlacklisted(hostname, cachedBlacklistMap);
 
     if (sender.tab?.id != null) {
       await sendMessageToTab(
@@ -213,9 +220,9 @@ export default defineBackground(() => {
 
   // --- ストレージ変更監視（キャッシュ更新 + タブ通知）---
   browser.storage.onChanged.addListener((changes) => {
-    // キャッシュを即座に更新
+    // キャッシュを型安全に更新（undefined でないもののみ）
     for (const [key, change] of Object.entries(changes)) {
-      if (key in cachedOptions) {
+      if (key in cachedOptions && change.newValue !== undefined) {
         (cachedOptions as unknown as Record<string, unknown>)[key] = change.newValue;
       }
     }
@@ -231,10 +238,10 @@ export default defineBackground(() => {
     }
 
     if (changes.blacklist) {
-      const blacklistMap = parseBlacklist(String(changes.blacklist.newValue ?? ''));
+      cachedBlacklistMap = parseBlacklist(String(changes.blacklist.newValue ?? ''));
       broadcastToTabs(ALL_PAGES_PATTERNS, {
         type: 'OPTIONS_UPDATED',
-        payload: { blacklist: blacklistMap },
+        payload: { blacklist: cachedBlacklistMap },
       });
     }
 
@@ -284,7 +291,8 @@ export default defineBackground(() => {
   });
 
   // --- 初期化: キャッシュ読み込み + Keep-Alive 状態設定 ---
-  (async () => {
+  // メッセージハンドラは initReady を await してからキャッシュを参照する
+  initReady = (async () => {
     const options = await refreshOptionsCache();
     if (options.highPerformanceMode) {
       await startKeepAlive();

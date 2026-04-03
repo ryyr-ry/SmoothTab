@@ -11,7 +11,7 @@ export function parseBlacklist(raw: string): BlacklistMap {
 
   const lines = raw.split('\n');
   for (const line of lines) {
-    const trimmed = line.trim();
+    const trimmed = line.trim().toLowerCase();
     if (trimmed) {
       map[trimmed] = true;
     }
@@ -20,7 +20,13 @@ export function parseBlacklist(raw: string): BlacklistMap {
 }
 
 export function isBlacklisted(hostname: string, blacklist: BlacklistMap): boolean {
-  const parts = hostname.split('.');
+  const normalizedHost = hostname.toLowerCase();
+
+  // 単一ラベルホスト（localhost等）の直接マッチ
+  if (blacklist[normalizedHost]) return true;
+
+  // サブドメインの階層的マッチ
+  const parts = normalizedHost.split('.');
   for (let i = 0; i < parts.length - 1; i++) {
     const candidate = parts.slice(i).join('.');
     if (blacklist[candidate]) return true;

@@ -10,7 +10,8 @@ import './style.css';
 import '../content/style.css';
 import { ClickHandler } from '@/modules/content/click-handler';
 import { AdapterRegistry } from '@/modules/site-adapters/adapter-registry';
-import { sendMessageToBackground } from '@/modules/messaging/sender';
+import { getOptions } from '@/modules/options/storage';
+import { DEFAULT_OPTIONS } from '@/modules/options/types';
 
 type I18nKey = Parameters<typeof browser.i18n.getMessage>[0];
 
@@ -26,10 +27,18 @@ document.querySelectorAll<HTMLElement>('[i18n]').forEach((el) => {
 
 document.title = browser.i18n.getMessage('thankHeader');
 
-// --- ダブルクリック機能の初期化 ---
-const adapterRegistry = new AdapterRegistry(window.location.hostname);
-const guardState = { blacklisted: false };
-const clickHandler = new ClickHandler(adapterRegistry, guardState, 300);
-clickHandler.attach();
+// --- ダブルクリック機能の初期化（ストレージからdelay読み込み）---
+void (async () => {
+  let delay = DEFAULT_OPTIONS.delay;
+  try {
+    const options = await getOptions();
+    delay = options.delay;
+  } catch {
+    // 初回インストール直後はストレージが空の可能性あり
+  }
 
-void sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
+  const adapterRegistry = new AdapterRegistry(window.location.hostname);
+  const guardState = { blacklisted: false };
+  const clickHandler = new ClickHandler(adapterRegistry, guardState, delay);
+  clickHandler.attach();
+})();

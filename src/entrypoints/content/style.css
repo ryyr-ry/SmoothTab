@@ -5,7 +5,7 @@
  * 同じ要素で確実にアニメーションを再トリガーできる。
  */
 
-@keyframes qt-animation-a {
+@keyframes smooth-tab-anim-a {
   from {
     opacity: 0.1;
   }
@@ -14,7 +14,7 @@
   }
 }
 
-@keyframes qt-animation-b {
+@keyframes smooth-tab-anim-b {
   from {
     opacity: 0.1;
   }

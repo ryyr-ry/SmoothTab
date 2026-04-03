@@ -24,7 +24,7 @@ export class DoubleClickDetector {
     this.delay = delay;
   }
 
-  detect(anchor: HTMLAnchorElement, event: MouseEvent): DoubleClickResult {
+  detect(anchor: HTMLAnchorElement): DoubleClickResult {
     if (this.pendingTimerId !== null) {
       if (this.lastAnchor?.isSameNode(anchor)) {
         this.clearPending();

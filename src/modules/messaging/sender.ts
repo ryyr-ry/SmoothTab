@@ -24,7 +24,12 @@ export async function sendMessageToBackground(
     await browser.runtime.sendMessage(message);
     return true;
   } catch (error) {
-    if (String(error).includes('Extension context invalidated')) {
+    // 拡張コンテキスト無効化エラーは正常系（更新/リロード後の残存スクリプト）
+    const isContextInvalidated =
+      error instanceof Error &&
+      (error.message.includes('Extension context invalidated') ||
+       error.message.includes('Receiving end does not exist'));
+    if (isContextInvalidated) {
       return false;
     }
     console.error('Smooth Tab [sendMessageToBackground] 送信失敗:', error);

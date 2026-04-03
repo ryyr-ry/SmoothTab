@@ -15,6 +15,12 @@ const TEST_RESET_MS = 3000;
 document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.lang = browser.i18n.getUILanguage();
 
+  // フォーム送信を JS で防止（inline handler を排除）
+  const form = document.getElementById('options-form');
+  if (form) {
+    form.addEventListener('submit', (e) => e.preventDefault());
+  }
+
   const elements = {
     openTabFront: document.getElementById('openTabFront') as HTMLInputElement,
     openTabEnd: document.getElementById('openTabEnd') as HTMLInputElement,
@@ -157,9 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const MIN_RIGHT_CLICK_INTERVAL_MS = 50;
   let lastRightClickTime = 0;
 
-  document.addEventListener('mouseup', (e: MouseEvent) => {
-    if (e.button !== 2) return;
-
+  document.addEventListener('contextmenu', (e: MouseEvent) => {
     const now = Date.now();
     if (now - lastRightClickTime < MIN_RIGHT_CLICK_INTERVAL_MS) return;
     lastRightClickTime = now;

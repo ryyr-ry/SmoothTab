@@ -11,16 +11,10 @@ export function resolveAnchor(event: MouseEvent): HTMLAnchorElement | null {
   const anchor = target.closest('a') as HTMLAnchorElement | null;
   if (anchor?.href) return anchor;
 
-  if (event.composedPath) {
-    const path = event.composedPath();
-    for (const element of path) {
-      if (
-        element instanceof HTMLAnchorElement &&
-        element.tagName === 'A' &&
-        element.href
-      ) {
-        return element;
-      }
+  const path = event.composedPath();
+  for (const element of path) {
+    if (element instanceof HTMLAnchorElement && element.href) {
+      return element;
     }
   }
 

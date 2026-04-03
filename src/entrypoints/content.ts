@@ -12,7 +12,6 @@ import { sendMessageToBackground } from '@/modules/messaging/sender';
 import type { ExtensionMessage } from '@/modules/messaging/types';
 
 const INSTANCE_KEY = '__smoothTabDestroy__' as const;
-const RETRY_DELAY_MS = 1000;
 
 type GlobalWithDestroy = typeof globalThis & {
   [INSTANCE_KEY]?: () => void;
@@ -94,13 +93,18 @@ export default defineContentScript({
       rightClickDetector.detach();
     });
 
-    // --- 初期化完了を通知（リトライ付き）---
+    // --- 初期化完了を通知（指数バックオフリトライ）---
     void (async () => {
-      const ok = await sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
-      if (!ok) {
-        setTimeout(async () => {
-          await sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
-        }, RETRY_DELAY_MS);
+      const MAX_RETRIES = 3;
+      const BASE_DELAY_MS = 500;
+      let attempt = 0;
+
+      while (attempt <= MAX_RETRIES) {
+        const ok = await sendMessageToBackground({ type: 'CONTENT_SCRIPT_READY' });
+        if (ok) break;
+        attempt++;
+        if (attempt > MAX_RETRIES) break;
+        await new Promise((r) => setTimeout(r, BASE_DELAY_MS * Math.pow(2, attempt - 1)));
       }
     })();
   },
