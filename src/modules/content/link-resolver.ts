@@ -8,8 +8,8 @@ export function resolveAnchor(event: MouseEvent): HTMLAnchorElement | null {
   const target = event.target as Element | null;
   if (!target) return null;
 
-  const anchor = target.closest('a') as HTMLAnchorElement | null;
-  if (anchor?.href) return anchor;
+  const closest = target.closest('a');
+  if (closest instanceof HTMLAnchorElement && closest.href) return closest;
 
   const path = event.composedPath();
   for (const element of path) {

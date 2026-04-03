@@ -219,13 +219,11 @@ export default defineBackground(() => {
   }
 
   // --- ストレージ変更監視（キャッシュ更新 + タブ通知）---
-  browser.storage.onChanged.addListener((changes) => {
-    // キャッシュを型安全に更新（undefined でないもののみ）
-    for (const [key, change] of Object.entries(changes)) {
-      if (key in cachedOptions && change.newValue !== undefined) {
-        (cachedOptions as unknown as Record<string, unknown>)[key] = change.newValue;
-      }
-    }
+  browser.storage.onChanged.addListener(async (changes) => {
+    // 初期化完了を待ってからキャッシュを操作する
+    await initReady;
+    // キャッシュ全体を再読込（型安全: getOptions() → ExtensionOptions を通過）
+    await refreshOptionsCache();
 
     const generalPayload: Record<string, unknown> = {};
 
@@ -238,7 +236,7 @@ export default defineBackground(() => {
     }
 
     if (changes.blacklist) {
-      cachedBlacklistMap = parseBlacklist(String(changes.blacklist.newValue ?? ''));
+      // refreshOptionsCache() で cachedBlacklistMap は既に更新済み
       broadcastToTabs(ALL_PAGES_PATTERNS, {
         type: 'OPTIONS_UPDATED',
         payload: { blacklist: cachedBlacklistMap },

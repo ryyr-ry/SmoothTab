@@ -2,11 +2,6 @@
  * クリックハンドラ（オーケストレータ）。
  * link-resolver, click-guard, double-click-detector, animation, SiteAdapter を統合する。
  * 自身はサイト固有ロジックを一切持たない。
- *
- * 設計上の注意: different-link の場合、最初のリンクのクリックは消失する。
- * これは意図的な動作で、ユーザーが別リンクに注目を移したことを意味する。
- * 最初のリンクをリプレイすると、2つの同時ナビゲーションが発生し、
- * ユーザー体験が悪化するため行わない。
  */
 
 import { safeAddEventListener, safeRemoveEventListener } from '@/utils/safe-natives';
@@ -80,7 +75,6 @@ export class ClickHandler {
         break;
 
       case 'first-click':
-      case 'different-link':
         this.onFirstClick(e, anchor, adapter);
         break;
     }

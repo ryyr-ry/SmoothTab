@@ -7,8 +7,7 @@ import { safeSetTimeout, safeClearTimeout } from '@/utils/safe-natives';
 
 export type DoubleClickResult =
   | { kind: 'first-click' }
-  | { kind: 'double-click' }
-  | { kind: 'different-link' };
+  | { kind: 'double-click' };
 
 export class DoubleClickDetector {
   private pendingTimerId: number | null = null;
@@ -30,8 +29,8 @@ export class DoubleClickDetector {
         this.clearPending();
         return { kind: 'double-click' };
       }
+      // 別リンクの場合: 旧タイマーをキャンセルし、新クリックをfirst-clickとして扱う
       this.clearPending();
-      return { kind: 'different-link' };
     }
     return { kind: 'first-click' };
   }
